@@ -1,8 +1,8 @@
 # QZC-N01 — Numeric Pilot Master Plan
 
-状态：**DISTRIBUTION PREPARED / GATE 0 BLOCKED**  
+状态：**DISTRIBUTION FROZEN / GATE 0 PASS**  
 阶段：`QZC-N01-0 — Numeric Pilot Baseline & Distribution Freeze`  
-分发准备日期：2026-09-28
+分发冻结日期：2026-09-28
 
 ## 0. Baseline verification
 
@@ -14,19 +14,28 @@ Foundation baseline commit 已核实存在：
 
 `0cd74d783fa23add6dc881b408a8c8ba8503f8e8`
 
-计划使用的 Contract baseline tag：
+Contract baseline tag：
 
 `contracts-v0.1.0`
 
-截至本文件生成时，该 tag **尚不存在**。本阶段执行连接器不具备创建 Git tag / tag ref 的写接口，因此不得把同名 branch 或文字声明冒充正式 tag。Gate 0 保持 BLOCKED，直至该 tag 被实际创建并再次核实精确指向 `0cd74d783fa23add6dc881b408a8c8ba8503f8e8`。
+Gate 0 复核结果：
 
-在 Gate 0 PASS 前：
+- `contracts-v0.1.0` 已实际存在；
+- 它是 annotated tag；
+- tag object SHA：`407e91b2161e6743645dfbac4c0addd9865506c7`；
+- tag message：`Qingzhou Contracts Foundation baseline v0.1.0`；
+- tag 最终精确指向 `0cd74d783fa23add6dc881b408a8c8ba8503f8e8`；
+- GitHub tag verification 显示 `unsigned`，本阶段未要求签名，因此不阻塞 Gate 0；
+- GitHub Release 页面仍不是本阶段强制项。
 
-- 三个分发任务书可以作为已冻结的执行说明草案；
-- 不得声称 Numeric Pilot 已正式分发；
-- 不得修改三个业务仓 `platform-lock.json`；
-- 不得把任何 Contract DRAFT 提升为 FROZEN；
-- 不得开始中央跨项目 PASS 汇总。
+因此 **Gate 0 PASS**。N01-A / N01-B / N01-C 的中央分发基线现已冻结，可分别进入各业务项目自己的 Design → Execution → Independent Acceptance 流程。
+
+Gate 0 PASS 不代表：
+
+- 三个业务仓已升级 `platform-lock.json`；
+- Numeric Contract v1 已冻结；
+- 任一业务 Pilot 已 PASS；
+- 中央平台可以代替业务仓做独立验收。
 
 ## 1. 阶段目标
 
@@ -66,7 +75,9 @@ QZC-N01 用三个真实项目分别验证 Numeric Contract 的边界与可执行
 | N01-B | `adgo07/EquipEffi` | `master` | `b336fd313ea8e3ee1c688786c05d126d76dc2699` | `0cd74d783fa23add6dc881b408a8c8ba8503f8e8`；release/tag 当前为 `null` |
 | N01-C | `adgo07/GHGTOOL` | `main` | `84e07bb74dbee8db0fd716e3ed8261cfaf9e3415` | `0cd74d783fa23add6dc881b408a8c8ba8503f8e8`；release/tag 当前为 `null` |
 
-这些 SHA 是 N01-0 分发准备时实际默认分支 head，不得用历史交接 SHA 替代。后续业务仓可以继续正常开发；各 Pilot 在自己的设计、执行、验收报告中必须分别记录真实 Design baseline SHA、Execution head SHA、Acceptance head SHA。
+这些 SHA 是 N01-0 分发冻结时实际默认分支 head，不得用历史交接 SHA 替代。后续业务仓可以继续正常开发；各 Pilot 在自己的设计、执行、验收报告中必须分别记录真实 Design baseline SHA、Execution head SHA、Acceptance head SHA。
+
+三个业务仓当前 lock 的 tag/release 字段仍为 `null` 是既有事实。本次中央分发冻结**不授权**直接修改这些 lock；业务仓是否以及何时把 lock 从 bootstrap SHA 形式升级为 `contracts-v0.1.0 + SHA`，应由对应业务项目的显式治理任务决定。
 
 ## 4. N01 Gates
 
@@ -79,7 +90,9 @@ PASS 条件：
 - tag 精确指向 `0cd74d783fa23add6dc881b408a8c8ba8503f8e8`；
 - 若 tag 已存在但指向其他 commit：立即 BLOCKED，禁止移动、覆盖或重建来掩盖问题。
 
-当前状态：**BLOCKED — tag 尚不存在**。
+当前状态：**PASS**。
+
+核实证据：annotated tag object `407e91b2161e6743645dfbac4c0addd9865506c7` → commit `0cd74d783fa23add6dc881b408a8c8ba8503f8e8`。
 
 ### Gate 1 — N01-A evidence complete
 
@@ -176,13 +189,15 @@ QZC-N01-0 不得：
 
 ## 9. 本阶段完成定义
 
-N01-0 的中央文档工作完成条件：
+N01-0 完成条件：
 
 - Master Plan 已建立；
 - 三份 Distribution 已建立；
 - Return Template 已建立；
 - 业务仓默认分支、真实 head 和 lock 已重新核实；
-- 中央状态文件准确记录 Gate 0；
+- `contracts-v0.1.0` 已验证为 annotated tag 且精确指向 Foundation baseline；
+- Gate 0 = PASS；
+- 中央状态文件已更新；
 - 独立 PR 已创建且未合并。
 
-由于当前缺少真实 `contracts-v0.1.0` tag，**N01-0 文档可完成，但正式 Distribution Freeze / Gate 0 不能宣告 PASS**。
+上述条件现均已满足，因此 **QZC-N01-0 的 Numeric Pilot baseline & distribution freeze 已完成**。Gate 1～3 尚未开始，也没有任何业务项目被中央平台预先判定 PASS。
