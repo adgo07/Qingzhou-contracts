@@ -58,7 +58,7 @@
 
 当前建议：初始化与 DRAFT 阶段不要伪称 v1.0 stable；三个业务仓完成 QZC-A01 后，可考虑把共同锁定的 `0cd74d783fa23add6dc881b408a8c8ba8503f8e8` 标记为首个 pre-1.0 release；待四组 Contract 通过三个代表标准试点后再发布 `contracts-v1.0.0`。
 
-需用户最终确认 tag/release 命名习惯。
+**QZC-N01-0 状态补充（2026-09-28）：** 用户已选择 `contracts-v0.1.0` 作为首个 pre-1.0 Foundation baseline tag，并已实际创建 annotated tag。经复核，tag object 为 `407e91b2161e6743645dfbac4c0addd9865506c7`，最终精确指向 `0cd74d783fa23add6dc881b408a8c8ba8503f8e8`。因此“首个 pre-1.0 baseline tag 采用何命名”这一部分已获得事实性决策证据；本次只补状态，不借此冻结 `contracts-v1.0.0` 的正式发布条件，也不改变其他 OPEN 决策。后续治理清理时应将已决定部分迁入正式发布/ADR 记录。
 
 ---
 
