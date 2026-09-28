@@ -56,7 +56,7 @@
 - `contracts-v0.1.0`：表示 Contract 仍在试点；
 - `contracts-v1.0.0`：表示四组 Contract 已正式稳定。
 
-当前建议：初始化与 DRAFT 阶段不要伪称 v1.0 stable；待四组 Contract 通过三个代表标准试点后再发布 `contracts-v1.0.0`。
+当前建议：初始化与 DRAFT 阶段不要伪称 v1.0 stable；三个业务仓完成 QZC-A01 后，可考虑把共同锁定的 `0cd74d783fa23add6dc881b408a8c8ba8503f8e8` 标记为首个 pre-1.0 release；待四组 Contract 通过三个代表标准试点后再发布 `contracts-v1.0.0`。
 
 需用户最终确认 tag/release 命名习惯。
 
@@ -108,6 +108,8 @@
 尚未冻结如何划分。
 
 建议通过 GB 29446、离心泵、GB/T 32151.34 三个 prototype 后再决定推荐粒度，不强制所有标准一标准一包。
+
+ECQuota 现有 `.uebench` manifest/hash/signature/增量包能力应作为 prototype 输入，但不得直接视为公共 qzpack Contract 已实现。
 
 ---
 
@@ -166,3 +168,55 @@ Rust/C++/其他 Native Core 暂不实施。
 > 先统一语义，再观察至少两个项目稳定实现，最后抽公共代码。
 
 何时发布第一个 `qingzhou-platform` 公共 Python package 尚未冻结。
+
+---
+
+## D-011 Carbon quantity / unit / stoichiometric coefficient boundary
+
+**优先级：高，来源：GHGTOOL QZC-A01**
+
+需要明确：
+
+- `tC` 与 `tCO₂` 是单位、quantity type，还是二者共同定义业务量；
+- 44/12、44/16 等应如何表达为标准公式/化学计量系数；
+- 这些系数不得被误归类为普通 unit conversion；
+- Canonical、Unit Contract、Result/Trace 应如何记录 quantity type 与 coefficient provenance。
+
+建议在 GB/T 32151.34 Numeric/Unit 试点中形成候选结构，不先修改公共 Unit Contract 正文。
+
+---
+
+## D-012 Numeric tolerance / `is_close` vs exact comparison
+
+**优先级：高，来源：GHGTOOL QZC-A01**
+
+Architecture V2.1 与 Numeric DRAFT 默认强调 exact/full-value comparison，但现有业务实现可能存在 `is_close` / tolerance 用于工程比较、查表、测试或数值稳定性。
+
+需要区分：
+
+- 正式等级/限值边界是否允许 tolerance；
+- 算法内部数值稳定性 tolerance；
+- 测试断言 tolerance；
+- 查表/插值定位 tolerance；
+- 标准明文规定的容差。
+
+不得把一个全局 epsilon 同时用于这些不同语义。
+
+建议 ECQuota 精确边界、EquipEffi 非线性函数、GHGTOOL 现有 `is_close` 三个试点共同验证后再冻结。
+
+---
+
+## D-013 Runtime Presentation State vs cross-platform Business Workspace
+
+**优先级：中，来源：GHGTOOL QZC-A01**
+
+已冻结原则：Qt/Tk 控件状态、objectName、currentIndex、Windows path 等不得成为跨平台 Workspace Contract 的业务真值。
+
+仍需明确：
+
+- 现有 runtime `form_state` 与未来 Business Workspace 如何共存；
+- 是否需要 migration/adapter；
+- presentation_state 是否可以作为平台私有附属字段；
+- `.qzproj` 导出时如何只保留平台无关业务状态。
+
+当前不要求 GHGTOOL 返工已有 projects.sqlite；先在 Workspace Contract 试点中定义边界。
