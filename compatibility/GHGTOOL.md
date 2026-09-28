@@ -2,39 +2,46 @@
 
 更新时间：2026-09-28
 
-> 本文件只记录公共架构兼容摘要。详细状态以 GHGTOOL 自己的 HANDOFF/TASK_STATE/实际代码/测试为准。
+> 本文件只记录公共架构兼容摘要。详细状态以 GHGTOOL 自己的 HANDOFF / TASK_STATE / 实际代码 / 测试为准。
 
 ## 当前判断
 
-总体：**🟡 部分符合，公共架构基础较成熟。**
+QZC-A01：**PASS**。
+
+当前默认分支：`main@84e07bb74dbee8db0fd716e3ed8261cfaf9e3415`。  
+锁定中央基线：`Qingzhou-contracts@0cd74d783fa23add6dc881b408a8c8ba8503f8e8`。
+
+QZC-A01 治理接入已合并；随后 PR #13 的 SourceCard UI 展开修复也已合并，且不改变 Domain、Canonical、数据库 schema 或公共治理关系。
 
 ## 已有良好基础
 
 - Presentation / Application / Domain / Infrastructure 分层已经比较清楚；
-- 复杂炭素行业计算器已经独立于 Qt/SQLite；
+- 复杂炭素行业计算器独立于 Qt / SQLite；
 - 已有 DecimalPolicy，明确拒绝 binary float；
 - 已有 UnitService；
 - Canonical JSON → catalog.sqlite 确定性构建基础成熟；
-- Workspace/正式 Record 已有实际分离基础；
-- 不可变正式记录、参数快照和来源追溯已有较强基础；
+- Workspace / 正式 Record 已有实际分离基础；
+- 不可变正式记录、参数快照和来源追溯基础较强；
 - FieldSpec 已形成 Presentation Schema 雏形。
 
 ## 当前公共重点
 
 1. 不把 Canonical-first 误解成“所有碳核算算法都 JSON DSL 化”；
 2. 保留 Versioned Domain Calculator，并通过 Rule Specification + Conformance 约束；
-3. Numeric Contract 不只停留在 DecimalPolicy 文档层，要逐步收口权威计算链；
-4. 区分单位换算与公式固有系数；
-5. 蒸汽表、标准查表、标准系数等优先迁入 Canonical/reference data；
-6. 建立 GB/T 32151.34 平台无关 Conformance Vectors；
-7. runtime `form_state` 只视为 Presentation State，不作为未来跨平台 Workspace Contract。
+3. Numeric Contract 要逐步收口权威计算链，而不只停留在 DecimalPolicy；
+4. 明确 quantity / unit / formula coefficient 的分层；
+5. 明确 `is_close / tolerance` 与 exact comparison 的公共边界；
+6. 蒸汽表、标准查表、标准系数等优先迁入 Canonical/reference data；
+7. 建立 GB/T 32151.34 平台无关 Conformance Vectors；
+8. runtime `form_state` 只作为 Presentation State，不作为未来跨平台 Workspace Contract。
 
 ## 当前不要做
 
 - 不把 CarbonMaterialCalculator 全部改成通用 DSL；
 - 不立即把所有数据拆成大量 qzpack；
-- 不为 Result Contract 现在给 records.sqlite 堆大量无实际用途字段；
-- 不提前开发 Suite/Mobile/Native Core。
+- 不为了 Result Contract 给 records.sqlite 堆大量无实际用途字段；
+- 不提前开发 Suite / Mobile / Native Core；
+- 不把现有 tolerance 行为直接宣布为公共 Numeric Contract。
 
 ## 首批试点
 
@@ -42,17 +49,26 @@
 
 ```text
 Canonical Evidence/Data
-+ Rule Specification
 + Versioned Domain Calculator
-→ Numeric / Unit Contract
-→ Conformance
-→ Result/Record Envelope
-→ qzpack prototype
+→ Decimal / Unit / Quantity semantics
+→ tolerance / comparison candidate
+→ Conformance vectors
+→ Result/Record candidate
 ```
+
+## RFC / Decision 关联
+
+QZC-A01 新暴露的公共候选：
+
+- `D-011`：Carbon quantity / unit / stoichiometric coefficient boundary；
+- `D-012`：Numeric tolerance / `is_close` vs exact comparison；
+- `D-013`：Runtime Presentation State vs cross-platform Business Workspace。
+
+另外继续受 `D-005`、`D-006` 约束。
 
 ## 治理注意
 
-如业务仓库旧 AGENTS/README 与最新已批准项目保存/Workspace 治理存在历史冲突，应以业务仓库最新批准治理文件为准并尽快清理陈旧禁令，避免执行 Agent 被旧规则误阻塞。
+如业务仓库旧 AGENTS/README 与最新已批准项目保存/Workspace 治理存在历史冲突，应以业务仓库最新批准治理文件为准并逐步清理陈旧禁令，避免执行 Agent 被旧规则误阻塞。
 
 ## 状态更新规则
 
