@@ -1,21 +1,23 @@
 # N01-C — GHGTOOL Numeric Pilot Distribution
 
-状态：**READY AFTER GATE 0 / NOT YET DISPATCHED**  
+状态：**DISTRIBUTION FROZEN / READY FOR BUSINESS PILOT**  
 Pilot ID：`N01-C`  
 Repository：`adgo07/GHGTOOL`  
-分发准备日期：2026-09-28
+分发冻结日期：2026-09-28
 
 ## 1. Distribution baseline
 
 - 默认分支：`main`
-- 分发准备时 head SHA：`84e07bb74dbee8db0fd716e3ed8261cfaf9e3415`
-- Contract baseline tag：`contracts-v0.1.0`（当前尚未创建，Gate 0 未通过）
+- 分发时 head SHA：`84e07bb74dbee8db0fd716e3ed8261cfaf9e3415`
+- Contract baseline tag：`contracts-v0.1.0`
+- Contract baseline tag object：`407e91b2161e6743645dfbac4c0addd9865506c7`
 - Contract baseline SHA：`0cd74d783fa23add6dc881b408a8c8ba8503f8e8`
-- 当前业务仓 `platform-lock.json`：锁定上述 SHA；Contract release/tag 当前为 `null`；不得在本 Pilot 分发阶段修改
+- Gate 0：**PASS** — annotated tag 已实际存在并精确指向上述 SHA
+- 当前业务仓 `platform-lock.json`：锁定上述 SHA；Contract release/tag 当前为 `null`；本 Pilot 分发阶段不修改该 lock
 - 代表标准：**GB/T 32151.34—2024**
 - Module ID：`qz.carbon_accounting`
 
-正式开始业务仓 Pilot 前，必须再次核实 `contracts-v0.1.0` 已存在且精确指向 `0cd74d...`。
+本任务书现已正式具备分发基线。它授权后续在 GHGTOOL 中单独开展 N01-C 的 Design / Execution / Independent Acceptance，但**不授权**修改 `platform-lock.json` 或自动升级到中央仓最新 `main`。
 
 ## 2. Pilot purpose
 
@@ -180,4 +182,4 @@ Gate 3 的 PASS / FAIL / BLOCKED 必须由 GHGTOOL 自己的独立验收任务�
 - project-specific rules；
 - 仍然 OPEN 的 D-011 / D-012 问题。
 
-在 Gate 0 未通过前，本任务书保持 **READY AFTER GATE 0**。
+当前中央状态：**Gate 0 PASS；N01-C 已具备正式分发基线；Gate 3 尚未开始，且只能由 GHGTOOL 的独立验收决定。**
