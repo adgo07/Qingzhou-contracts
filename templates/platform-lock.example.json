@@ -1,0 +1,11 @@
+{
+  "contracts_release": "contracts-v0.1.0",
+  "commit": "REPLACE_WITH_FULL_COMMIT_SHA",
+  "architecture_version": "2.1",
+  "numeric_contract_version": "draft-v1",
+  "unit_contract_version": "draft-v1",
+  "module_contract_version": "draft-v1",
+  "package_contract_version": "draft-v1",
+  "workspace_contract_version": "draft-v1",
+  "result_contract_version": "draft-v1"
+}
