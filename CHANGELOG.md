@@ -2,6 +2,35 @@
 
 本文件记录公共架构、Contract、Schema 与 Conformance 的发布级变化。
 
+## Unreleased — QZC-N01-0 Numeric Pilot Baseline & Distribution Freeze
+
+### Added / Updated
+
+- 建立 `pilots/numeric/QZC_N01_MASTER_PLAN.md`；
+- 建立 N01-A / N01-B / N01-C 三份独立业务仓 Numeric Pilot 分发任务书；
+- 建立统一 `N01_PILOT_RETURN_TEMPLATE.md`；
+- 重新核实三个业务仓默认分支、分发时真实 head 与 `platform-lock.json`；
+- 固定 Pilot 共同 Foundation baseline SHA 为 `0cd74d783fa23add6dc881b408a8c8ba8503f8e8`；
+- 明确 Gate 1～3 的 PASS 必须分别由业务项目独立验收产生，中央平台不得代替宣布；
+- 明确 Decimal50、ROUND6、tolerance、quantity/unit/coefficient 等均先作为真实试点证据或 candidate，不直接升级为公共冻结规则。
+
+### Baseline / tag verification
+
+- 执行前中央 `main`：`befd08e69f365d4e4e82281d65024117f325a484`；
+- Foundation baseline commit `0cd74d...` 已核实存在；
+- 计划首个 pre-1.0 baseline tag 为 `contracts-v0.1.0`；
+- 截至 2026-09-28 N01-0 执行时，该 tag 尚不存在；
+- 当前执行连接器不具备创建 Git tag / tag ref 的写接口，因此 Gate 0 保持 **BLOCKED**，不得以同名 branch 或文档声明冒充 tag。
+
+### Not changed
+
+- 未修改 ECQuota-Insight、EquipEffi、GHGTOOL；
+- 未修改三个业务仓 `platform-lock.json`；
+- 未修改 Numeric / Unit / Record Contract DRAFT 正文；
+- 未冻结 D-001、D-011、D-012；
+- 未创建公共 Numeric implementation；
+- 未开始 qzpack、Workspace / Result Record 新阶段。
+
 ## Unreleased — QZC-A02 Adoption Summary
 
 ### Added / Updated
