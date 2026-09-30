@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qingzhou.example/contracts/numeric/conformance-vector-v1-candidate.schema.json",
+  "title": "Qingzhou Numeric Conformance Vector v1 Gate-4 Candidate",
+  "description": "Candidate only; not frozen. Common core with category-specific optional blocks.",
+  "type": "object",
+  "required": [
+    "case_id",
+    "category",
+    "numeric_contract_version",
+    "numeric_profile_id",
+    "authority_scope",
+    "inputs",
+    "provenance"
+  ],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "category": {"type": "string", "minLength": 1},
+    "numeric_contract_version": {"type": "string", "minLength": 1},
+    "numeric_profile_id": {"type": "string", "minLength": 1},
+    "authority_scope": {"type": "string", "minLength": 1},
+    "inputs": {},
+    "normalized_value": {"type": ["string", "object", "array", "null"]},
+    "calculation_value": {"type": ["string", "object", "array", "null"]},
+    "comparison_value": {"type": ["string", "object", "array", "null"]},
+    "display_value": {"type": ["string", "object", "array", "null"]},
+    "operator": {"enum": ["lt", "lte", "eq", "gte", "gt", null]},
+    "threshold": {"type": ["string", "object", "null"]},
+    "rounding": {
+      "type": ["object", "null"],
+      "properties": {
+        "stage": {"type": "string"},
+        "mode": {"type": "string"},
+        "places": {"type": ["integer", "null"]},
+        "precision": {"type": ["integer", "null"]},
+        "significant_digits": {"type": ["integer", "null"]},
+        "purpose": {"type": "string"},
+        "source": {"type": ["string", "object", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "transcendental_reference": {
+      "type": ["object", "null"],
+      "properties": {
+        "function": {"type": "string"},
+        "operation_order": {"type": ["string", "object", "array"]},
+        "reference_procedure": {"type": ["string", "object"]},
+        "reference_value": {"type": ["string", "object", "array", "null"]},
+        "normalization": {"type": ["string", "object", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "tolerance": {
+      "type": ["object", "null"],
+      "required": ["purpose", "mode", "value"],
+      "properties": {
+        "purpose": {
+          "enum": [
+            "business-boundary",
+            "standard-explicit",
+            "algorithmic-numerical",
+            "lookup-interpolation",
+            "test-conformance"
+          ]
+        },
+        "mode": {"type": "string"},
+        "value": {"type": "string"},
+        "unit": {"type": ["string", "null"]},
+        "source": {"type": ["string", "object", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "requested_profile": {"type": ["object", "string", "null"]},
+    "effective_profile": {"type": ["object", "string", "null"]},
+    "ambient_profile": {"type": ["object", "string", "null"]},
+    "conflicting_profile": {"type": ["object", "string", "null"]},
+    "expected_business_result": {},
+    "expected_error": {"type": ["string", "object", "null"]},
+    "legacy_expected_result": {},
+    "legacy_numeric_behavior_version": {"type": ["string", "null"]},
+    "current_numeric_behavior_version": {"type": ["string", "null"]},
+    "unit_conversion": {"type": ["object", "null"]},
+    "input_quantity": {"type": ["object", "null"]},
+    "output_quantity": {"type": ["object", "null"]},
+    "coefficient": {"type": ["object", "null"]},
+    "characterization_factor": {"type": ["object", "null"]},
+    "provenance": {"type": ["object", "string", "array"]}
+  },
+  "anyOf": [
+    {"required": ["expected_business_result"]},
+    {"required": ["expected_error"]},
+    {
+      "required": ["transcendental_reference"],
+      "properties": {
+        "transcendental_reference": {
+          "type": "object",
+          "required": ["reference_value"]
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}
