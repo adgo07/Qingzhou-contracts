@@ -2,6 +2,58 @@
 
 本文件记录公共架构、Contract、Schema 与 Conformance 的发布级变化。
 
+## Unreleased — QZC-N01-E Numeric Contract v1 Freeze Decision
+
+### Frozen / Accepted
+
+- 创建 `contracts/numeric/NUMERIC_CONTRACT_V1_FROZEN.md`，状态：**FROZEN — Numeric Contract v1**；
+- 创建 `contracts/numeric/NUMERIC_PROFILES_V1_FROZEN.md`，冻结 Profile 机制但不把三个 Pilot Profile 设为平台模板；
+- 创建 `conformance/common/numeric/CONFORMANCE_VECTOR_V1_FROZEN.md`；
+- 创建 `conformance/common/numeric/conformance_vector_v1.schema.json`；
+- 创建 `decisions/ADR-NUMERIC-V1.md`，状态：**ACCEPTED**；
+- 创建 `pilots/numeric/QZC_N01_GATE5_FREEZE_REPORT.md`；
+- QZC-N01 Gate 5 完成，Numeric Contract v1 正式冻结。
+
+### Frozen Numeric rules
+
+- 每个 authoritative calculation scope 必须声明 Numeric Profile；
+- authoritative operation/helper/service 必须消费 declared Profile，或显式声明并 trace sub-profile；禁止 silent fallback；
+- declared-profile consistency 与 ambient independence 是两个独立 Conformance requirement；
+- 默认正式业务比较为 `full-value exact comparison`；
+- implicit rounding 默认禁止；explicit business rounding 必须有 stage / precision-or-places / mode / purpose / source；display rounding 不得反馈正式 comparison；
+- tolerance 正式分为 business-boundary / standard-explicit / algorithmic-numerical / lookup-interpolation / test-conformance；禁止 platform global epsilon；
+- numerical tolerance 不能掩盖 rule/bucket/grade/status/conclusion 等 business mismatch；
+- transcendental/reference procedure 必须声明 function/domain/Profile/operation order/procedure version/normalization/reference output/conformance tolerance；
+- input / normalized / calculation / comparison / display 在 Contract 语义上必须区分；
+- 正式结果至少可追踪 Numeric Contract version、Numeric Profile ID、calculator/rule version；
+- Unit/Quantity/coefficient 只冻结概念分类边界，不冻结完整 Unit/Quantity schema。
+
+### Gate 4 Minor resolved
+
+- Gate 4 Independent Acceptance 指出的 non-blocking Minor 已修复：`expected_business_result` 不再被描述为所有 Conformance vector 无条件必填；
+- frozen model 要求 Common Core + 至少一个 category-appropriate expected outcome：`expected_business_result` / `expected_reference_value` / `expected_error`；
+- 扩展字段按 category conditional required。
+
+### Decision status
+
+- D-001：**PARTIALLY RESOLVED** — reference procedure / operation order / Profile / tolerance obligation 已冻结；Kotlin/Swift/ArkTS 实测、统一 library、minimum precision、universal tolerance 继续 OPEN；
+- D-004：**RESOLVED / FROZEN**；
+- D-011：**PARTIALLY RESOLVED** — 四类概念边界已冻结，Quantity/coefficient public schema 继续 OPEN；
+- D-012：**RESOLVED / FROZEN IN NUMERIC CONTRACT v1**。
+
+### Explicitly not frozen / not implemented
+
+- Unit Contract v1：**NOT FROZEN**；
+- Quantity Schema：**NOT FROZEN**；
+- coefficient public schema：**OPEN**；
+- `numeric_behavior_version` 最终 Result/Record 字段位置：**OPEN**；
+- ECQuota Excel/openpyxl lossless ingress：**OPEN**；
+- Kotlin/Swift/ArkTS actual transcendental conformance：**OPEN**；
+- 未修改 ECQuota-Insight、EquipEffi、GHGTOOL 或三个业务 `platform-lock.json`；
+- 未实现公共 Numeric Python package；
+- 未启动 qzpack、Workspace/Result Record 新阶段；
+- 未新增 N01 Pilot。
+
 ## Unreleased — QZC-N01-D Cross-Pilot Review & Numeric Contract v1 Candidate Synthesis
 
 ### Added
