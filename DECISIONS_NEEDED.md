@@ -1,68 +1,52 @@
 # DECISIONS_NEEDED
 
-本文件只记录**目前没有足够依据替用户冻结**的公共决策。
+本文件只记录**目前仍没有足够依据冻结的公共决策或已部分解决但仍有 OPEN 残项的决策**。
 
 原则：
 
 - 未决事项不应被单个业务项目私自永久定型；
 - 可以做可逆试验；
 - 需要冻结时通过 RFC/ADR；
-- 已决定事项应从本文件移除并进入正式 Contract/ADR；
-- `GATE-4 CANDIDATE RESOLVED` / `READY FOR FREEZE REVIEW` 不等于 `FROZEN`，仍需 Gate 5 明确决策。
+- 已完全解决事项进入正式 Contract/ADR，不再作为 OPEN 决策维护；
+- PARTIALLY RESOLVED 必须明确区分“已冻结部分”与“仍 OPEN 部分”。
+
+## QZC-N01 Gate 5 已解决事项
+
+以下 Numeric 决策已经在 `decisions/ADR-NUMERIC-V1.md` 和 Numeric Contract v1 中正式冻结，不再作为 OPEN 项：
+
+- **D-004 Conformance Vector v1 Numeric schema model**：`RESOLVED / FROZEN` — Common Core + category-specific fields；expected outcome 按类别条件要求；
+- **D-012 Numeric tolerance / exact comparison**：`RESOLVED / FROZEN IN NUMERIC CONTRACT v1` — full-value exact default、purpose-specific tolerance、禁止 global epsilon、numerical/business conformance 分离。
 
 ---
 
 ## D-001 Transcendental Numeric reference procedure
 
 **优先级：高**  
-**Gate-4 状态：PARTIALLY RESOLVED / GATE-5 PARTIAL**
+**Gate-5 状态：PARTIALLY RESOLVED**
 
 涉及：`sqrt`、`ln`、fractional `pow`、未来可能的 `exp`。
 
-### Previous status
+### 已冻结于 Numeric Contract v1
 
-尚未冻结：reference algorithm/library、内部工作精度、函数输出精度、tolerance 语义、normalization、以及 Python Decimal50 与未来 Kotlin/Swift/ArkTS 的最终一致性方式。
+- 每个正式 transcendental/reference capability 必须有 reference procedure；
+- 必须声明 input/domain semantics；
+- 必须声明 Numeric Profile；
+- operation order 必须成为 reference procedure / Rule semantics 的一部分（当有限精度重排会影响输出时）；
+- 必须声明 normalization、reference output、conformance tolerance；
+- numerical result conformance 与 business result conformance 分开验收；
+- numerical tolerance 内的差异不能掩盖 business mismatch。
 
-### New evidence from QZC-N01
+证据来源：N01-B `PUMP-RP-0.1`、p28/p34/p40/p50/p60 sensitivity、operation-order sensitivity、Approved Golden；以及 N01-A/N01-C 对 business exactness/profile authority 的补充证据。
 
-N01-B 已基于真实离心泵公式建立并执行 `PUMP-RP-0.1`，覆盖：
+### 继续 OPEN
 
-- strict decimal ingress；
-- declared working profile；
-- `sqrt / ln / fractional pow`；
-- p28/p34/p40/p50/p60 precision sensitivity；
-- exact 与 nonlinear numerical domain；
-- operation-order sensitivity；
-- reference outputs；
-- numerical tolerance 与 business result 分离；
-- Approved Golden replay。
+- Kotlin / Swift / ArkTS 实际 transcendental implementation/conformance；
+- 是否存在一个统一 math library/reference implementation；
+- 全平台 minimum working precision；
+- universal transcendental tolerance；
+- 各未来语言/library 对 frozen reference procedure 的实际兼容性测量。
 
-数学等价 operation tree 在 p50 下可产生约 `1E-47–1E-48` 的非零末位差异，证明 operation order 必须进入 reference semantics。
-
-### Gate-4 conclusion
-
-可以形成并进入 Gate 5 审查的**reference procedure structure**：
-
-```text
-function_id
-input semantics/domain
-working profile
-operation order
-reference procedure/version
-normalization
-reference output
-conformance tolerance
-```
-
-但不能把 Pump Decimal50、ROUND_HALF_EVEN、Python Decimal API、某一 tolerance 数值直接冻结为全平台规则。
-
-### Remaining uncertainty
-
-- Kotlin / Swift / ArkTS 尚未实际执行 N01-B transcendental vectors；
-- 尚无证据定义全平台单一最低 precision；
-- 尚无证据定义跨语言统一 tolerance 数值或单一 library/algorithm。
-
-**Ready for Gate-5 freeze? `PARTIAL`** — 结构/义务可审查；具体跨语言实现/数值值域继续 OPEN。
+这些 OPEN 项**不阻塞 Numeric Contract v1**，但会阻塞对应平台在未执行 Conformance 前声明该 Capability 已正式支持。
 
 ---
 
@@ -87,64 +71,18 @@ conformance tolerance
 
 **优先级：中**
 
-候选：
+已确定首个 pre-1.0 Foundation baseline tag：
 
-- `contracts-v0.1.0`：表示 Contract 仍在试点；
-- `contracts-v1.0.0`：表示四组 Contract 已正式稳定。
+`contracts-v0.1.0` → `0cd74d783fa23add6dc881b408a8c8ba8503f8e8`
 
-当前建议：初始化与 DRAFT 阶段不要伪称 v1.0 stable；三个业务仓完成 QZC-A01 后，可考虑把共同锁定的 `0cd74d783fa23add6dc881b408a8c8ba8503f8e8` 标记为首个 pre-1.0 release；待四组 Contract 通过三个代表标准试点后再发布 `contracts-v1.0.0`。
+该 tag 的命名/目标已是事实性决定。
 
-**QZC-N01-0 状态补充（2026-09-28）：** 用户已选择 `contracts-v0.1.0` 作为首个 pre-1.0 Foundation baseline tag，并已实际创建 annotated tag。经复核，tag object 为 `407e91b2161e6743645dfbac4c0addd9865506c7`，最终精确指向 `0cd74d783fa23add6dc881b408a8c8ba8503f8e8`。因此“首个 pre-1.0 baseline tag 采用何命名”这一部分已获得事实性决策证据；不借此冻结 `contracts-v1.0.0` 的正式发布条件。后续治理清理时应将已决定部分迁入正式发布/ADR 记录。
+仍未冻结：
 
----
+- 完整公共 Contract 集合何时达到 `contracts-v1.0.0` 发布条件；
+- Numeric Contract v1 freeze 是否单独产生 release/tag，或等其他 Contract 共同发布。
 
-## D-004 Conformance Vector v1 exact schema
-
-**优先级：高**  
-**Gate-4 状态：GATE-4 CANDIDATE RESOLVED / READY FOR FREEZE REVIEW**
-
-### Previous status
-
-已冻结“必须有跨平台 Conformance”原则，但最终 Vector JSON Schema 未冻结；required fields、tolerance 粒度、trace/intermediate、provenance 等待代表 Pilot 验证。
-
-### New evidence from QZC-N01
-
-三个已独立验收 Pilot 都产生了 executable vectors：
-
-- N01-A：exact T−δ/T/T+δ、legacy-vs-corrected、display separation、numeric behavior trace；
-- N01-B：sqrt/ln/fractional pow、precision sensitivity、operation order、numerical tolerance、Golden replay；
-- N01-C：unit/quantity/coefficient、display separation、profile propagation、ambient independence、profile mismatch rejection。
-
-### Gate-4 conclusion
-
-统一 schema 应采用：
-
-> **Common Core + Category-specific fields**
-
-Common Core 至少覆盖：
-
-```text
-case_id
-category
-numeric_contract_version
-numeric_profile_id
-authority_scope
-inputs
-source/provenance
-```
-
-并按类别要求 expected business/reference/error output。comparison、rounding、transcendental/reference、tolerance、quantity/coefficient、effective profile、legacy migration 等字段按类别 conditional required，不应全部 mandatory。
-
-Gate-4 Candidate：
-
-- `conformance/common/numeric/CONFORMANCE_VECTOR_V1_CANDIDATE.md`
-- `conformance/common/numeric/conformance_vector_v1_candidate.schema.json`
-
-### Remaining uncertainty
-
-最终枚举、exact requiredness、warnings/problems 最小结构仍需 Gate 5 审查。
-
-**Ready for Gate-5 freeze? `YES`** — schema model 已具备完整 Candidate；当前仍不是 FROZEN。
+Numeric Contract v1 的文档冻结本身不等于四组公共 Contract 已整体达到 `contracts-v1.0.0`。
 
 ---
 
@@ -174,9 +112,7 @@ Gate-4 Candidate：
 
 尚未冻结如何划分。
 
-建议通过 GB 29446、离心泵、GB/T 32151.34 三个 prototype 后再决定推荐粒度，不强制所有标准一标准一包。
-
-ECQuota 现有 `.uebench` manifest/hash/signature/增量包能力应作为 prototype 输入，但不得直接视为公共 qzpack Contract 已实现。
+ECQuota 现有 `.uebench` manifest/hash/signature/增量包能力只能作为 prototype 输入，不得直接视为公共 qzpack Contract 已实现。
 
 ---
 
@@ -184,7 +120,7 @@ ECQuota 现有 `.uebench` manifest/hash/signature/增量包能力应作为 proto
 
 **优先级：低（当前）**
 
-已冻结：平台无关、不可依赖 Python pickle/UI state/Windows path，定位为交换与归档。
+已冻结原则：平台无关、不可依赖 Python pickle/UI state/Windows path，定位为交换与归档。
 
 尚未冻结：
 
@@ -194,8 +130,6 @@ ECQuota 现有 `.uebench` manifest/hash/signature/增量包能力应作为 proto
 - 签名；
 - compression；
 - schema migration。
-
-当前不要提前实现。
 
 ---
 
@@ -228,39 +162,24 @@ Rust/C++/其他 Native Core 暂不实施。
 
 **优先级：中低**
 
-当前先统一 Contract，不立刻把 ECQuota/GHGTOOL/EquipEffi 中看起来相似的 Decimal/Unit 代码强行抽成一个包。
+Numeric Contract v1 已冻结语义，但不等于立即抽取公共 implementation。
 
-原则：
+原则仍为：
 
-> 先统一语义，再观察至少两个项目稳定实现，最后抽公共代码。
+> 先统一语义，再观察稳定实现，最后按真实收益抽公共代码。
 
-何时发布第一个 `qingzhou-platform` 公共 Python package 尚未冻结。
+何时发布第一个 `qingzhou-platform` 公共 Numeric/Python package 尚未冻结。
 
 ---
 
 ## D-011 Carbon quantity / unit / stoichiometric coefficient boundary
 
 **优先级：高，来源：GHGTOOL QZC-A01**  
-**Gate-4 状态：PARTIALLY RESOLVED / CLASSIFICATION READY FOR FREEZE REVIEW / SCHEMA OPEN**
+**Gate-5 状态：PARTIALLY RESOLVED**
 
-### Previous status
+### 已冻结的概念原则
 
-需要明确 `tC/tCO₂` 的 unit/quantity semantics，44/12、44/16 的公式/化学计量边界，以及 Canonical/Unit/Result trace 如何记录 quantity/coefficient provenance。
-
-### New evidence from QZC-N01-C
-
-真实执行区分了：
-
-- ordinary unit conversion：kg↔t、MWh↔GJ、10⁴Nm³↔Nm³、percent↔ratio；
-- C→CO₂ via 44/12；
-- CH₄→CO₂ via 44/16；
-- greenhouse-gas mass→CO₂e via GWP；
-- candidate quantity fixture for C / CO₂ / CH₄ and CO₂e equivalence basis；
-- structured coefficient trace with coefficient ID/type/rational expression/source mapping。
-
-### Gate-4 conclusion
-
-分类原则具备 Gate-5 Candidate：
+Numeric Contract v1 已冻结以下四类为不同语义类别：
 
 ```text
 ordinary unit conversion
@@ -273,68 +192,20 @@ characterization / equivalence factor
 
 - `44/12` 不是公共 ordinary unit conversion multiplier；
 - `44/16` 不是公共 ordinary unit conversion multiplier；
-- GWP 是 characterization/equivalence factor，不是 SI/unit scaling。
+- GWP 属 characterization/equivalence factor，不是 SI/unit scaling；
+- legacy `tC ↔ tCO₂` UnitService bridge 不能因 API 形式而自动升级为公共 Unit Contract 语义。
 
-Quantity representation 比较结果：Candidate B 方向优于 A：
+### 继续 OPEN
 
-```text
-value
-quantity_type
-substance_id?
-unit_id
-equivalence_basis?
-```
+- Quantity public schema；
+- `quantity_type` 公共 enum 与层级；
+- `substance_id` 最终 enum / requiredness；
+- `equivalence_basis` 最终 requiredness / schema；
+- coefficient public schema/enum；
+- CO₂e 最终公共模型；
+- Canonical / Unit / Result Trace 中 Quantity/Factor provenance 的最终字段位置。
 
-### Remaining uncertainty
-
-- public quantity type/substance enum；
-- CO₂e 最终 quantity model；
-- field requiredness；
-- coefficient public enum/schema；
-- equivalence basis 最小 provenance fields。
-
-**Ready for Gate-5 freeze? `PARTIAL`** — 分类原则 YES；Quantity/Factor public schema NO。Unit Contract v1 未被冻结。
-
----
-
-## D-012 Numeric tolerance / `is_close` vs exact comparison
-
-**优先级：高，来源：GHGTOOL QZC-A01**  
-**Gate-4 状态：GATE-4 CANDIDATE RESOLVED / READY FOR FREEZE REVIEW**
-
-### Previous status
-
-需要区分正式业务 tolerance、标准显式 tolerance、算法/数值 tolerance、test assertion tolerance、lookup/interpolation tolerance，且不得用一个全局 epsilon 同时承担不同职责。
-
-### New evidence from all three Pilots
-
-- N01-A：正式等级边界使用 exact/full-value；无 decision epsilon；隐式 ROUND6 会真实改变等级。
-- N01-B：nonlinear/reference numerical difference 可以由明确 conformance tolerance 评价，但 `rule_id/bucket/grade/status/conclusion` 只要不同必须 FAIL。
-- N01-C：formal business comparison 与 test/numerical tolerance 分离；candidate vector 显式 `purpose=test_assertion` 且 `business_effect=false`。
-
-### Gate-4 conclusion
-
-候选 taxonomy：
-
-```text
-business-boundary
-standard-explicit
-algorithmic/numerical
-lookup/interpolation
-test/conformance
-```
-
-Display formatting 不属于 tolerance。
-
-默认正式业务比较：`full-value exact comparison`。不得默认加 epsilon。标准/Rule 明确允许 tolerance 或显式修约时，必须声明 purpose、mode/value、stage/source 等语义。
-
-一个平台级 global epsilon 被明确禁止。
-
-### Remaining uncertainty
-
-具体 tolerance 数值/模式仍由标准、Rule、Profile 或 reference procedure 的真实证据决定，不形成公共统一数值。
-
-**Ready for Gate-5 freeze? `YES`**。
+Candidate B（`value + quantity_type + substance_id? + unit_id + equivalence_basis?`）仍可作为后续设计输入，但**不是 frozen public Quantity Schema**。
 
 ---
 
@@ -351,4 +222,15 @@ Display formatting 不属于 tolerance。
 - presentation_state 是否可以作为平台私有附属字段；
 - `.qzproj` 导出时如何只保留平台无关业务状态。
 
-当前不要求 GHGTOOL 返工已有 projects.sqlite；先在 Workspace Contract 试点中定义边界。
+当前不要求 GHGTOOL 返工已有 projects.sqlite；留待 Workspace Contract 阶段处理。
+
+---
+
+## Numeric v1 freeze 后仍需跟踪但不新增 D 编号的 OPEN implementation/schema items
+
+这些事项已经在 `NUMERIC_CONTRACT_V1_FROZEN.md` 和 `QZC_N01_GATE5_FREEZE_REPORT.md` 明确记录，不需要为了关闭 QZC-N01 再启动新 Pilot：
+
+1. ECQuota Excel/openpyxl numeric-cell binary-float ingress / lossless workbook ingress；
+2. Decimal lexical interchange / Excel ingress 公共方案；
+3. Result/Record 中 `numeric_behavior_version` 最终字段位置；
+4. standalone helper 成为 authoritative public entry point 时的具体 API/conformance 落地方式。
