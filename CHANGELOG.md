@@ -2,6 +2,40 @@
 
 本文件记录公共架构、Contract、Schema 与 Conformance 的发布级变化。
 
+## Unreleased — QZ-GOV-S01 中央治理收敛 + 标准开发与知识沉淀指南 v0.1
+
+### Added
+
+- `docs/GUIDE_INDEX.md` — 青舟开发文档导航（Navigation / Reading Router）：按任务类型路由应读取的中央文件，并标明各文件权威状态；
+- `docs/governance/STANDARD_DEVELOPMENT_GUIDE_V0.1.md` — 青舟标准开发与知识沉淀指南 v0.1，状态 **ACTIVE / EVOLVING**；
+- `compatibility/README.md` — 说明 `compatibility/` 为带日期的兼容性快照，不是业务仓实时状态源。
+
+### Changed
+
+- `docs/governance/PRODUCT_DELIVERY_POLICY_V1.md` 第 10 节：移除与标准开发指南重复的新标准检查清单枚举，改为指向 `STANDARD_DEVELOPMENT_GUIDE_V0.1.md` 的短引用；保留产品交付级“新标准逐个增加”原则；
+- `compatibility/MATRIX.md` 与 `compatibility/ECQuota.md` / `EquipEffi.md` / `GHGTOOL.md`：明确为带日期的历史快照，业务仓当前实现状态以业务仓自身 `TASK_STATE` / `HANDOFF` / `platform-lock.json` / 实际代码和测试为准；未改动任何历史 SHA 与历史结论。
+
+### Guide v0.1 content
+
+- 新标准统一四阶段流程：Stage A 标准整理 → Stage B 软件接入设计 → Stage C 实现 → Stage D 正式验收；
+- 统一标准支持状态：`CATALOG_ONLY` → `MAPPING` → `READY_FOR_IMPLEMENTATION` → `IMPLEMENTED` → `SUPPORTED`；不得无证据跳级，允许因重大问题回退；
+- 第二个及后续标准承担架构验证任务；若每个标准都要重写 AppShell / 标准库 / Record / Excel / Calculator framework / 数据库基本结构，必须暂停判断是标准特殊还是抽象设计错误；
+- 知识沉淀采用 Opportunistic Capture：不设固定交付数量，允许记录「Knowledge capture：无」；通常只形成 1～3 条 `DRAFT`；状态只使用 `DRAFT` / `REVIEWED` / `PUBLISHED` / `RETIRED`；知识最小字段为标题 / 状态 / 类型 / 适用标准 / 来源 / 正文 / 关联 Standard Issue；
+- 知识必须区分标准原文事实 / 官方资料 / 专业技术解释 / 工程实践建议四个事实层级；不得把技术判断写成标准明文；
+- 中央仓只定义公共知识方法，具体专业知识位于业务仓（ECQuota 能耗限额 / EquipEffi 设备能效 / GHGTOOL 碳核算），允许业务仓建立 `knowledge/`，中央不要求三仓相同目录结构；
+- 明确两条链路分离：`Standard / Canonical Rule → Calculator` 与 `Standard / Issue / Rule → Knowledge explanation → User`；知识文章不得作为 Calculator 权威数据源或规则源，禁止运行时解析 Markdown 决定业务结果；
+- 未来软件知识中心（搜索 / 分类 / 标准关联 / 字段帮助 / FAQ / 本地全文搜索 / 后续 AI 助手）仅作为长期方向记录，本次不实现。
+
+### Explicitly not changed
+
+- 未修改 Architecture V2.1 FROZEN、Numeric Contract v1、Numeric Profiles v1、Frozen Conformance Vector；
+- 未修改任何 Calculator、业务 Rule、Schema、标准算法或 `platform-lock.json`；
+- 未修改 ECQuota-Insight、EquipEffi、GHGTOOL 三个业务仓；
+- 未删除 Numeric DRAFT / CANDIDATE、Pilot 历史文件、历史 ADR、历史 Gate 报告；
+- 未做大目录移动、archive 重排、`PLATFORM_STATE` 与 `DECISIONS_NEEDED` 合并或 contracts 目录重构；
+- 未把任何 `DRAFT` / `CANDIDATE` / `HISTORICAL` / `PILOT` 标记为 `FROZEN`；
+- 未实现知识数据库、向量数据库或 AI Chat / RAG 系统。
+
 ## Unreleased — QZC-N01-E Numeric Contract v1 Freeze Decision
 
 ### Frozen / Accepted

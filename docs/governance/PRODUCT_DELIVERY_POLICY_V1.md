@@ -233,18 +233,13 @@ Excel 数值进入正式业务链前必须明确处理：
 
 参考标准 + Excel 闭环完成以后，新标准原则上逐个增加。
 
-每增加一个新标准，至少确认：
+完整的新标准开发流程（Stage A 标准整理 / Stage B 软件接入设计 / Stage C 实现 / Stage D 正式验收）、标准支持状态与知识沉淀方法，统一见：
 
-- 标准来源、状态、适用范围和元数据；
-- 输入字段、强制字段、条件字段、校验规则；
-- 单位、参数、公式和判定规则；
-- Numeric Contract；
-- 边界案例；
-- Golden Case；
-- Conformance；
-- Windows UI；
-- Excel 映射；
-- 回归测试。
+`docs/governance/STANDARD_DEVELOPMENT_GUIDE_V0.1.md`
+
+> 详细新标准开发流程见：`STANDARD_DEVELOPMENT_GUIDE_V0.1.md`。
+
+本节只保留产品交付级原则，不重复该指南的阶段、检查清单与知识沉淀规则。
 
 ## 11. 第二个标准承担架构验证任务
 

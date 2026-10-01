@@ -2,7 +2,9 @@
 
 更新时间：2026-09-28
 
-> 本文件只记录公共架构兼容摘要。详细状态以 GHGTOOL 自己的 HANDOFF / TASK_STATE / 实际代码 / 测试为准。
+> 本文件只记录公共架构兼容摘要，是**带日期的历史快照**，不是 GHGTOOL 的实时状态源。
+>
+> 本文件中的默认分支 SHA、接入状态、实现完成度等**不随业务仓变化自动更新**。业务仓当前实现状态以该业务仓自己的 **TASK_STATE / HANDOFF / platform-lock.json / 实际代码和测试**为准。详见 `compatibility/README.md`。
 
 ## 当前判断
 
