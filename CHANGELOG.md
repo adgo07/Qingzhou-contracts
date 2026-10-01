@@ -2,6 +2,57 @@
 
 本文件记录公共架构、Contract、Schema 与 Conformance 的发布级变化。
 
+## Unreleased — QZC-N01-D Cross-Pilot Review & Numeric Contract v1 Candidate Synthesis
+
+### Added
+
+- `pilots/numeric/QZC_N01_CROSS_PILOT_REVIEW.md`；
+- `contracts/numeric/NUMERIC_CONTRACT_V1_CANDIDATE.md`；
+- `contracts/numeric/NUMERIC_PROFILES_V1_CANDIDATE.md`；
+- `conformance/common/numeric/CONFORMANCE_VECTOR_V1_CANDIDATE.md`；
+- `conformance/common/numeric/conformance_vector_v1_candidate.schema.json`；
+- `decisions/ADR-NUMERIC-V1-CANDIDATE.md`；
+- `pilots/numeric/QZC_N01_GATE4_EXECUTION_REPORT.md`。
+
+### Accepted Pilot evidence
+
+- N01-A / ECQuota Independent Acceptance：**PASS**；acceptance head `368f0cfd4cfc0931174583f8cfdf2a9abbbfbc19`；merge `031d0bb3406918d841984b3a535e172a8190b876`；
+- N01-B / EquipEffi Independent Acceptance：**PASS**；acceptance head `020710b43f9e6b5509741d5fb2ba77f777728177`；merge `9efc6260b03d9e0a895abdb294a70cda39aa7598`；
+- N01-C / GHGTOOL final Independent Re-Acceptance：**PASS**；acceptance head `385c4b6a65d64867ec14f3b8cf8b9cb149b18a7a`；merge `7b560299311b56f5e82b865ab8db7f7f879697ba`；
+- N01-C 第一次 Independent Acceptance **FAIL** 被保留为正式 negative evidence：outer declared Profile 下 `_mul()` silent p40/HALF_UP fallback 证明“声明 Profile”不等于“权威链真实消费 Profile”。
+
+### Gate-4 Candidate conclusions
+
+- 公共 Contract 统一的是 numeric semantics / obligations，不是统一 precision/rounding 配置值；
+- 建立 Numeric Profile Contract candidate；不固定一个全平台 precision 或 rounding mode；
+- 每个 authoritative calculation scope 必须声明并实际传播 effective Numeric Profile；silent fallback 禁止；
+- declared-profile propagation 与 ambient-context independence 为两个独立 Conformance requirement；
+- 默认正式业务比较为 full-value exact comparison；implicit rounding 禁止；display rounding 只影响 presentation；
+- tolerance 必须 purpose-specific；禁止一个 global epsilon 承担不同职责；
+- numerical conformance 与 business conformance 分离；business outcome 不一致即 FAIL；
+- nonlinear/finite-precision authoritative formula 的 operation order/reference procedure 进入 Conformance semantics；
+- 44/12、44/16 归类为 stoichiometric/standard-formula coefficient，不作为 public ordinary unit conversion；
+- GWP 归类为 characterization/equivalence factor；
+- Quantity Candidate B 方向（`value + quantity_type + substance_id? + unit_id + equivalence_basis?`）优于最小 Candidate A，但 public Quantity Schema 未冻结。
+
+### Decision status
+
+- D-001：**PARTIALLY RESOLVED / GATE-5 PARTIAL**；reference procedure structure 可进入 Freeze Review，真实跨语言 implementation/tolerance 仍 OPEN；
+- D-004：**GATE-4 CANDIDATE RESOLVED / READY FOR FREEZE REVIEW**；
+- D-011：**PARTIALLY RESOLVED**；分类原则可审查，Quantity/coefficient public schema 仍 OPEN；
+- D-012：**GATE-4 CANDIDATE RESOLVED / READY FOR FREEZE REVIEW**。
+
+### Explicit non-freeze
+
+- Numeric Contract v1 **未冻结**；
+- Unit Contract v1 **未冻结**；
+- 未创建 `NUMERIC_CONTRACT_V1_FROZEN.md`；
+- 未冻结一个全平台 precision、rounding mode 或 epsilon；
+- 未把 Decimal50 / Carbon p40 设为全平台默认；
+- 未修改 ECQuota-Insight、EquipEffi、GHGTOOL 或三个 `platform-lock.json`；
+- 未实现公共 Numeric Python package 或 Kotlin/Swift/ArkTS 正式实现；
+- 未启动 qzpack、Workspace / Result Record 新阶段。
+
 ## Unreleased — QZC-N01-0 Numeric Pilot Baseline & Distribution Freeze
 
 ### Added / Updated
