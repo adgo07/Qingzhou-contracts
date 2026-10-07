@@ -633,3 +633,39 @@ Contract version、Numeric Profile、Rule / Calculator version、provenance、ha
 repository identity、branch / HEAD、diff、`platform-lock`、tests、CI 等低成本且有价值的自动验证继续保留，并优先由 Agent / 自动化完成。
 
 > **减少人工手续，不减少有价值的自动一致性检查。**
+
+### 21.7 轻量开发流程（Lean Delivery）
+
+普通任务默认采用轻量流程：
+
+```text
+短任务书 → AI 实现 → 相关自动测试 / CI → PR → 另一 AI 查看实际 diff（必要时附截图）
+```
+
+普通任务包括：普通 UI、文案、导航、设置、非业务语义重构、普通性能优化、代码清理、文档等。
+
+- 普通任务不默认要求独立 Design / Execution / Acceptance Report、大型验收清单或重复人工复核；PR body 可作为普通任务的主要记录；
+- 第 14 节与第 20 节的平台 / Contract 预检查要求针对正式报告，普通任务在 PR body 中写明“是否涉及公共 Contract / Business Truth”即可；
+- 低成本自动检查继续保留，并优先由 Agent / CI 完成；
+- 达到任务目标且检查通过后立即停止，不因发现非阻塞优化项自动扩大范围。
+
+只有出现以下情况，才升级为严格执行 + 独立验收：
+
+```text
+Business Truth；标准解释 / 公式 / Calculator / 正式结论
+Golden / Conformance / Numeric / Frozen
+新增正式标准
+Excel Writer 或正式数值输入输出语义
+不可逆 migration
+Record / backup / restore 数据安全
+正式 Release / Installer / 签名 / 升级
+公共 Contract 实质变化
+```
+
+### 21.8 当前 Desktop 产品更新原则
+
+- 普通用户只通过完整软件版本获得标准、规则、模板和正式参考数据更新；
+- 联网和离线默认都更新完整软件；
+- 不要求用户独立安装、扫描或管理标准包；
+- 内部 package / hash / signature / provenance / version / audit 继续作为构建、发布、校验和追溯的实现细节；
+- 本条不删除底层能力，也不修改 Frozen Architecture。
