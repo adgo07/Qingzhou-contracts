@@ -50,7 +50,7 @@
 - Numeric Contract v1 / Numeric Profiles v1 / Numeric Conformance Vector v1：`FROZEN`；
 - Unit Contract v1 / Module-Capability Contract v1 / Workspace-Attempt-Record-Result Contract v1 / qzpack Contract v1：**`DRAFT`，尚未冻结**；
 - Numeric Contract v1 的 `DRAFT` / `CANDIDATE` 历史文件：**保留为历史设计证据，不是当前权威**；
-- `docs/governance/PRODUCT_DELIVERY_POLICY_V1.md`、`docs/governance/STANDARD_DEVELOPMENT_GUIDE_V0.1.md`、`docs/ui/UI_DESIGN_GUIDELINES_V0.1.md`：`ACTIVE` / `ACTIVE / EVOLVING` 治理与设计指南，**均不是 Frozen Contract**。
+- `docs/governance/PRODUCT_DELIVERY_POLICY_V1.md`、`docs/governance/STANDARD_DEVELOPMENT_GUIDE_V0.1.md`、`docs/ui/UI_DESIGN_GUIDELINES_V0.2.md`：`ACTIVE` / `ACTIVE / EVOLVING` 治理与设计指南，**均不是 Frozen Contract**。
 
 确认当前状态时，以 `PLATFORM_STATE.md` 的 “Current Contract release state” 为准，不要根据文件名猜测。
 
@@ -82,7 +82,9 @@
 包括：
 
 - `docs/governance/PRODUCT_DELIVERY_POLICY_V1.md`（`ACTIVE`）；
-- `docs/ui/UI_DESIGN_GUIDELINES_V0.1.md`（`ACTIVE / EVOLVING`）；
+- [UI 指南 v0.2](ui/UI_DESIGN_GUIDELINES_V0.2.md)（`ACTIVE / EVOLVING`）；
+- [产品家族规格 v0.1](ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md)（`ACTIVE / EVOLVING`）；
+- [UI 验收清单 v0.1](ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md)（`ACTIVE / EVOLVING`，按任务范围使用）；
 - `docs/governance/STANDARD_DEVELOPMENT_GUIDE_V0.1.md`（`ACTIVE / EVOLVING`）；
 - `docs/GUIDE_INDEX.md`（本文件，`ACTIVE / EVOLVING`）。
 
@@ -173,13 +175,17 @@ ACTIVE 指南       → 由中央仓当前合并版本决定     → 决定"怎�
 
 **读取（`ACTIVE / EVOLVING` 指南，读中央仓当前适用版本，见第 2.1 B 节）：**
 
-- `docs/ui/UI_DESIGN_GUIDELINES_V0.1.md`。
+- [UI 指南 v0.2](ui/UI_DESIGN_GUIDELINES_V0.2.md) — 当前规则分类与版本协调；
+- [产品家族规格 v0.1](ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md) — Owner 决定、入口名称、真实能力与 OPEN；
+- [UI 验收清单 v0.1](ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md) — 只检查当前任务涉及的内容，不要求全面 UI Audit。
+
+**版本适用：** QZ-UI-02 PR 合并后 v0.2 为当前适用指南；合并前仍以已经合并的 v0.1 为准。[v0.1 原文](ui/UI_DESIGN_GUIDELINES_V0.1.md) 保留为历史版本，其状态行与旧推荐代表当时版本，不与 v0.2 并行规定当前设计。当前任务不回写历史正文。
 
 **必须明确：**
 
 - 该文件状态为 **`ACTIVE / EVOLVING`**，读取中央仓当前已合并的适用版本，**不按**业务仓 locked SHA 读取；
 - 它**不是 Frozen Contract**，也不得被升格为 Frozen Contract；
-- 它不冻结具体页面、导航结构或组件；
+- A 类是 Owner 当前实施依据，允许后续修改；B 类仅推荐，C 类保留开放与探索状态；不冻结最终 UI、像素或组件；
 - 它不授权 UI 重构，也不允许 Presentation 层自行改变 Calculator / Domain Rule / Canonical 语义；
 - 读取它**不因此修改**业务仓 `platform-lock.json`，也不构成任何 Frozen Contract adoption；
 - 若它与业务仓 locked Frozen Contract 冲突，**以 locked Frozen Contract 为准**。
@@ -266,7 +272,7 @@ ACTIVE 指南       → 由中央仓当前合并版本决定     → 决定"怎�
    4A. Frozen 权威文件（Frozen Contract / Schema / Conformance）
        → 按第 2 步取得的 locked SHA 读取
    4B. ACTIVE / ACTIVE-EVOLVING 指南
-       （PRODUCT_DELIVERY_POLICY_V1 / UI_DESIGN_GUIDELINES_V0.1 /
+       （PRODUCT_DELIVERY_POLICY_V1 / 当前 UI 指南、产品家族规格、验收清单 /
          STANDARD_DEVELOPMENT_GUIDE_V0.1 / GUIDE_INDEX）
        → 读中央仓当前已经正式合并、当前适用的版本
 5. 业务仓 STANDARD_ISSUES_REGISTER.md    ← 标准问题
@@ -288,7 +294,7 @@ ACTIVE 指南       → 由中央仓当前合并版本决定     → 决定"怎�
 
 - 不复制其他文件正文；
 - 不新增或修改任何 MUST / MUST NOT；
-- 不改变任何文件的状态或权威层级；
+- 不自行改变上游文件的状态或权威层级；只如实标注版本适用与历史保留关系；
 - 不替代 `AGENTS.md`；
 - 不替代 `docs/governance/CHANGE_PROCESS.md`；
 - 不替代任何 Frozen Contract。
