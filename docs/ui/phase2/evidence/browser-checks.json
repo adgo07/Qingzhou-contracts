@@ -1,0 +1,14 @@
+{
+  "checks": 61,
+  "status": "PASS",
+  "browser": "Edge Chromium",
+  "offline": true,
+  "viewports": [
+    1440,
+    1024,
+    768,
+    390
+  ],
+  "javascriptErrors": [],
+  "networkRequests": []
+}

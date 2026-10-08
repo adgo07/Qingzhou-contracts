@@ -2,6 +2,12 @@
 
 本文件记录公共架构、Contract、Schema 与 Conformance 的发布级变化。
 
+## Unreleased — QZ-UI-03 Phase 2 视觉与交互提案
+
+- 新增 `docs/ui/phase2/`：三产品切换的完整浏览器离线交互原型、真实青舟 LOGO 与统一 SVG、交互说明、视觉规范、PySide6 实施参考、简短验证说明与截图。
+- 原型明确演示数据与固定示意结果，尊重各产品当前能力；当前 Owner 决定、推荐方案及 OPEN 分开描述，状态为 **ACTIVE / EVOLVING**。
+- `docs/GUIDE_INDEX.md` 增加设计评审入口，不替代现行 UI 指南，不批准未确认交互；未修改三个业务仓、公共 Contract、业务真值或 platform-lock，未进入 Phase 3。
+
 ## Unreleased — QZ-UI-02 Phase 0～1 统一 UI 基线
 
 ### Added
