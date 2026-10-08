@@ -20,7 +20,9 @@
 | Frozen Contracts / Schema / Conformance Vector | 公共契约权威 | `FROZEN` |
 | `docs/governance/PRODUCT_DELIVERY_POLICY_V1.md` | 产品交付治理 | `ACTIVE` |
 | **本文件** | **标准开发流程 + 知识沉淀方法** | **`ACTIVE / EVOLVING`** |
-| `docs/ui/UI_DESIGN_GUIDELINES_V0.1.md` | 桌面 UI 设计治理 | `ACTIVE / EVOLVING` |
+| [UI 指南 v0.2](../ui/UI_DESIGN_GUIDELINES_V0.2.md) | 桌面 UI 设计治理 | `ACTIVE / EVOLVING` |
+| [产品家族规格 v0.1](../ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md) | Owner 当前决定、真实能力与 OPEN | `ACTIVE / EVOLVING` |
+| [UI 验收清单 v0.1](../ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md) | 按任务范围轻量核对 | `ACTIVE / EVOLVING` |
 
 本文件回答：
 
@@ -31,7 +33,7 @@
 
 - 公共 Contract 语义应该是什么（属于 RFC / ADR / Frozen Contract）；
 - 具体标准的技术内容（属于业务仓 Mapping 与 Standard Issues Register）；
-- 具体页面应该长什么样（属于 `UI_DESIGN_GUIDELINES_V0.1.md`）。
+- 具体页面应该长什么样（属于当前 UI 指南、产品家族规格与验收清单；版本读取见 [开发文档导航第 3.4 节](../GUIDE_INDEX.md#34-桌面-ui--ui-评审)）。
 
 **本文件不复制** `PRODUCT_DELIVERY_POLICY_V1.md` 的全文；产品交付级原则以该 Policy 为准，本文件只细化“新标准开发流程”与“知识沉淀方法”。公共 Contract 变更流程以 `docs/governance/CHANGE_PROCESS.md` 与 `docs/governance/VERSIONING.md` 为准。
 
@@ -268,7 +270,9 @@ GUI / Excel / 未来平台必须尽量进入：
 
 ## 14. UI 约束
 
-UI 继续遵守 `docs/ui/UI_DESIGN_GUIDELINES_V0.1.md`（`ACTIVE / EVOLVING`，不是 Frozen Contract）。
+UI 按 [开发文档导航第 3.4 节](../GUIDE_INDEX.md#34-桌面-ui--ui-评审) 读取当前 UI 指南 v0.2、产品家族规格 v0.1 与验收清单 v0.1（均为 `ACTIVE / EVOLVING`，不是 Frozen Contract）。本轮 QZ-UI-02 PR 合并后该路由适用；未合并分支仅用于评审，不自动成为业务任务的当前依据。
+
+本标准开发指南 v0.1 继续有效；历史保留的是 **UI 设计指南 v0.1**，不是本文件。后续 UI 任务不再由旧 UI 推荐引流，旧 UI 原文只作历史证据。
 
 当前 Windows Desktop：
 
@@ -570,7 +574,7 @@ Standard / Issue / Rule → Knowledge explanation → User
 - `docs/governance/CHANGE_PROCESS.md`（公共 Contract 变更流程）；
 - `docs/governance/VERSIONING.md`（版本与锁定）；
 - `docs/governance/PRODUCT_DELIVERY_POLICY_V1.md`（产品交付治理）；
-- `docs/ui/UI_DESIGN_GUIDELINES_V0.1.md`（桌面 UI 设计）；
+- [UI 指南 v0.2](../ui/UI_DESIGN_GUIDELINES_V0.2.md)、[产品家族规格 v0.1](../ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md)、[UI 验收清单 v0.1](../ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md)（当前桌面 UI 设计，适用版本按开发文档导航第 3.4 节）；
 - 任何 Frozen Contract。
 
 ## 34. v0.1 结论

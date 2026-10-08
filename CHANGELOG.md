@@ -2,6 +2,33 @@
 
 本文件记录公共架构、Contract、Schema 与 Conformance 的发布级变化。
 
+## Unreleased — QZ-UI-02 Phase 0～1 统一 UI 基线
+
+### Added
+
+- `docs/ui/UI_DESIGN_GUIDELINES_V0.2.md`：当前适用指南提案，状态 **ACTIVE / EVOLVING**，合并后替代 v0.1 的当前设计指导作用；明确 A（Owner 当前决定）/ B（推荐）/ C（待开放与探索），允许持续演进。
+- `docs/ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md`：16 项 Owner 决定、三产品入口名称、真实能力边界、推荐模式和 OPEN 设计项。
+- `docs/ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md`：轻量文档及后续相关页面验收清单；本轮不执行正式 UI 验收。
+
+### Changed
+
+- `docs/GUIDE_INDEX.md`：更新当前 UI 阅读路由，三份文件归入 ACTIVE 指南；明确 v0.1 历史保留、v0.2 经本轮 PR 合并后适用，不修改历史 v0.1 原文或业务仓 lock。
+- 协调旧指南通用侧栏、仅开放功能进入导航、标准来源/关系、基于记录重新开始和审计详情推荐；以新 Owner 决定为当前 UI 依据，底层追溯及数据兼容保留。
+
+### Acceptance corrections
+
+- `docs/governance/STANDARD_DEVELOPMENT_GUIDE_V0.1.md`：同步四处旧 UI 引用，指向当前 UI 指南、产品家族规格与轻量验收清单；标准开发指南 v0.1 仍有效，历史 UI 指南 v0.1 仅供查阅。
+- `docs/GUIDE_INDEX.md`：统一 PR 合并后的 UI 路由与未合并分支评审边界，区分标准开发指南 v0.1 与历史 UI 指南 v0.1，消除同名版本歧义。
+- UI 验收清单：明示 Owner 可修改 A 类、清单随之更新、不作为 Frozen 门禁；允许必要 ACTIVE 指南引用同步。
+- PR Phase 0 正文：分别记录侧栏与首页行动顺序，并补明 GHGTOOL 设置路由 / 底部按钮已存在，但内容仍为占位。未改业务代码或历史兼容快照。
+
+### Scope
+
+- Phase 0 仅核对四仓默认分支 / HEAD、指定页面源码及必要治理文件；检查 SHA、差异与证据留在中央 PR，不额外创建大型审计文档。
+- ECQuota Excel导入与折标系数库未开放；EquipEffi 不增草稿或额外保存；GHGTOOL Excel 只读预览且工作区与正式记录分开。
+- 未修改三个业务仓、公共 Contract、Frozen 文件、标准解释、Calculator、Canonical、数据库 Schema 或 `platform-lock.json`；未进入 Phase 2，不制作正式 UI，不创建公共 UI package 或跨仓运行时依赖。
+- 具体列名、状态筛选词汇、四区域标题、SVG/LOGO 资产与部分承载方式保持推荐或 OPEN，不替 Owner 发明决定。
+
 ## Unreleased — QZ-GOV-S01 中央治理收敛 + 标准开发与知识沉淀指南 v0.1
 
 ### Added
