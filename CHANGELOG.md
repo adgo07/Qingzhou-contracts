@@ -15,6 +15,13 @@
 - `docs/GUIDE_INDEX.md`：更新当前 UI 阅读路由，三份文件归入 ACTIVE 指南；明确 v0.1 历史保留、v0.2 经本轮 PR 合并后适用，不修改历史 v0.1 原文或业务仓 lock。
 - 协调旧指南通用侧栏、仅开放功能进入导航、标准来源/关系、基于记录重新开始和审计详情推荐；以新 Owner 决定为当前 UI 依据，底层追溯及数据兼容保留。
 
+### Acceptance corrections
+
+- `docs/governance/STANDARD_DEVELOPMENT_GUIDE_V0.1.md`：同步四处旧 UI 引用，指向当前 UI 指南、产品家族规格与轻量验收清单；标准开发指南 v0.1 仍有效，历史 UI 指南 v0.1 仅供查阅。
+- `docs/GUIDE_INDEX.md`：统一 PR 合并后的 UI 路由与未合并分支评审边界，区分标准开发指南 v0.1 与历史 UI 指南 v0.1，消除同名版本歧义。
+- UI 验收清单：明示 Owner 可修改 A 类、清单随之更新、不作为 Frozen 门禁；允许必要 ACTIVE 指南引用同步。
+- PR Phase 0 正文：分别记录侧栏与首页行动顺序，并补明 GHGTOOL 设置路由 / 底部按钮已存在，但内容仍为占位。未改业务代码或历史兼容快照。
+
 ### Scope
 
 - Phase 0 仅核对四仓默认分支 / HEAD、指定页面源码及必要治理文件；检查 SHA、差异与证据留在中央 PR，不额外创建大型审计文档。

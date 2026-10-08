@@ -22,6 +22,8 @@
 
 **默认原则：普通业务任务不要求通读中央 Contract。**
 
+**本轮版本切换：** 本分支的 UI 路由描述 QZ-UI-02 PR 合并后的适用版本；未合并分支只供评审，不自动作为业务任务依据。日常任务从中央已合并版本读取本导航，并按第 3.4 节取得唯一的当前 UI 路由。
+
 ## 1. 立即可用的中央入口
 
 | 文件 | 作用 | 什么时候读 |
@@ -85,7 +87,7 @@
 - [UI 指南 v0.2](ui/UI_DESIGN_GUIDELINES_V0.2.md)（`ACTIVE / EVOLVING`）；
 - [产品家族规格 v0.1](ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md)（`ACTIVE / EVOLVING`）；
 - [UI 验收清单 v0.1](ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md)（`ACTIVE / EVOLVING`，按任务范围使用）；
-- `docs/governance/STANDARD_DEVELOPMENT_GUIDE_V0.1.md`（`ACTIVE / EVOLVING`）；
+- `docs/governance/STANDARD_DEVELOPMENT_GUIDE_V0.1.md`（标准开发指南，继续 `ACTIVE / EVOLVING`；其中 UI 设计路由遵循第 3.4 节，不指向历史 UI v0.1）；
 - `docs/GUIDE_INDEX.md`（本文件，`ACTIVE / EVOLVING`）。
 
 读取方式：**读取中央仓当前已经正式合并、当前适用的版本**。
@@ -179,7 +181,7 @@ ACTIVE 指南       → 由中央仓当前合并版本决定     → 决定"怎�
 - [产品家族规格 v0.1](ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md) — Owner 决定、入口名称、真实能力与 OPEN；
 - [UI 验收清单 v0.1](ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md) — 只检查当前任务涉及的内容，不要求全面 UI Audit。
 
-**版本适用：** QZ-UI-02 PR 合并后 v0.2 为当前适用指南；合并前仍以已经合并的 v0.1 为准。[v0.1 原文](ui/UI_DESIGN_GUIDELINES_V0.1.md) 保留为历史版本，其状态行与旧推荐代表当时版本，不与 v0.2 并行规定当前设计。当前任务不回写历史正文。
+**版本适用：** 本轮 PR 合并后，当前 UI 依据为上述 UI 指南 v0.2、产品家族规格 v0.1 与验收清单 v0.1；未合并分支不提前生效。历史 [UI 设计指南 v0.1](ui/UI_DESIGN_GUIDELINES_V0.1.md) 原文及当时状态保留，仅供历史查阅，不与新 UI 指南并行规定当前设计。**标准开发指南 v0.1** 仍为 ACTIVE / EVOLVING，负责标准开发流程，其 UI 引用同步遵循本节；两份同为 v0.1 的文件不是同一文档。
 
 **必须明确：**
 
@@ -273,7 +275,7 @@ ACTIVE 指南       → 由中央仓当前合并版本决定     → 决定"怎�
        → 按第 2 步取得的 locked SHA 读取
    4B. ACTIVE / ACTIVE-EVOLVING 指南
        （PRODUCT_DELIVERY_POLICY_V1 / 当前 UI 指南、产品家族规格、验收清单 /
-         STANDARD_DEVELOPMENT_GUIDE_V0.1 / GUIDE_INDEX）
+         STANDARD_DEVELOPMENT_GUIDE_V0.1（仍有效，UI 按第 3.4 节） / GUIDE_INDEX）
        → 读中央仓当前已经正式合并、当前适用的版本
 5. 业务仓 STANDARD_ISSUES_REGISTER.md    ← 标准问题
 6. 业务仓现行 Mapping / Canonical / Rule / Calculator
