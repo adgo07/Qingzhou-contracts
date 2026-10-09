@@ -53,7 +53,7 @@ Playwright 仅为测试依赖，放在系统临时目录，不得提交 `node_mo
 - `status=FAIL` 时，`failures` 列出同次运行中累计的断言失败；修复后重新运行；
 - `status=ERROR` 表示浏览器操作、运行环境或依赖异常中断，不能算作通过；修复后重新运行。
 
-**人工视觉复验不可省略。** 在 Windows Edge 中打开 `docs/ui/phase2/prototype/index.html`，对照同次生成的 `evidence/home-desktop.png`、`standards-1440.png`、`standards-390.png`、`form-1024.png`、`form-390.png`、`ghg-long-form.png` 检查：中文按钮及提示、淡蓝导航、标准详情单页三分区、表格导入、表格溢出及横向滚动、长表单、窄屏遮挡及卡片冗余。对于桌面软件，移动端窄屏仅用于压力测试，不要求产品具备手机端功能。
+**人工视觉复验不可省略。** 在 Windows Edge 中打开 `docs/ui/phase2/prototype/index.html`，对照同次生成的 `evidence/home-desktop.png`、`standards-1440.png`、`standards-390.png`、`standard-detail-1440.png`、`standard-detail-390.png`、`form-1024.png`、`form-390.png`、`ghg-long-form.png` 检查：中文按钮及提示、淡蓝导航、标准详情单页三分区、表格导入、表格溢出及横向滚动、长表单、窄屏遮挡及卡片冗余。对于桌面软件，移动端窄屏仅用于压力测试，不要求产品具备手机端功能。
 
 将新版 `evidence/browser-checks.json` 与全部更新截图提交**到原 PR #12 分支**，简短记录实测 Edge 版本、窗口尺寸、失败项修复和人工视觉结论。若视觉仍待 Owner 确认，保留 `OPEN`，不要把脚本 PASS 自动升级为全部设计批准。
 
