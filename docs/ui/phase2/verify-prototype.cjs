@@ -48,6 +48,8 @@ check(await page.locator('.standard-detail-section').count()===3,'标准编号�
 check((await page.locator('.standard-detail-section h2').allTextContents()).join('|')==='基本信息|适用范围|标准要求','标准详情分区正确');
 check(await page.getByRole('tab').count()===0,'标准详情没有页签');
 check(!(await page.locator('.standard-detail-stack').innerText()).includes('软件支持范围'),'无软件支持范围');
+await page.evaluate(()=>document.getElementById('toast').hidden=true);
+await page.screenshot({path:path.join(output,'standard-detail-1440.png'),fullPage:true});
 await click('original');check((await page.locator('#toast').textContent()).includes('未附正式标准原文'),'查看原文提示');
 await click('back-standard');
 await page.locator('tbody tr:first-child td:nth-child(2) button').click();
@@ -84,6 +86,11 @@ for(const [width,height] of [[1440,900],[1024,768],[768,1024],[390,844]]){
  check(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),`窗口宽度 ${width}：页面没有整体横向溢出`);
  check(await page.locator('.table-wrap').evaluate(e=>e.scrollWidth>=e.clientWidth),`窗口宽度 ${width}：表格容器可局部滚动`);
  await page.evaluate(()=>document.getElementById('toast').hidden=true);await page.screenshot({path:path.join(output,`standards-${width}.png`),fullPage:true});
+ if(width===390){
+  await page.locator('tbody tr:first-child td:nth-child(1) button').click();
+  await page.screenshot({path:path.join(output,'standard-detail-390.png'),fullPage:true});
+  await click('back-standard');
+ }
  await nav('create');await scenario('long');check(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),`窗口宽度 ${width}：长表单没有整体横向溢出`);
  await page.evaluate(()=>document.getElementById('toast').hidden=true);await page.screenshot({path:path.join(output,`form-${width}.png`),fullPage:width===390});
  await nav('home');check(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),`窗口宽度 ${width}：首页没有整体横向溢出`);
