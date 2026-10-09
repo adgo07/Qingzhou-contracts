@@ -1,0 +1,62 @@
+name: Temporary QZ UI R1 Browser Evidence
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - ".github/workflows/qz-ui-r1-visual-retest.yml"
+      - "docs/ui/phase2/verify-prototype.cjs"
+
+permissions:
+  contents: write
+
+jobs:
+  edge-r1:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install test-only Playwright into runner temp
+        shell: pwsh
+        run: |
+          npm install --prefix "$env:RUNNER_TEMP\qz-ui-playwright" --no-save --no-package-lock playwright@1.56.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Run offline Microsoft Edge checks and screenshots
+        id: browser
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          $env:PLAYWRIGHT_MODULE = Join-Path "$env:RUNNER_TEMP\qz-ui-playwright" "node_modules\playwright"
+          $env:QZ_BROWSER_CHANNEL = "msedge"
+          node docs/ui/phase2/verify-prototype.cjs
+          exit $LASTEXITCODE
+      - name: Commit R1 evidence to PR branch
+        if: always()
+        shell: pwsh
+        env:
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/ui/phase2/evidence/
+          git diff --cached --quiet
+          if ($LASTEXITCODE -eq 1) {
+            git commit -m "test(ui): capture R1 Windows Edge evidence [skip ci]"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            git push origin "HEAD:$env:HEAD_BRANCH"
+            exit $LASTEXITCODE
+          }
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Enforce test result
+        if: steps.browser.outcome != 'success'
+        shell: pwsh
+        run: exit 1
