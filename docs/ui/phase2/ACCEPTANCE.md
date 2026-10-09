@@ -10,13 +10,13 @@ GHGTOOL 最新实现中 Excel 预览本身只读，另有显式保存项目后�
 
 ## 实测结果
 
-[可复现浏览器检查](verify-prototype.cjs) 在 Windows Edge Chromium 中以 **file:// + 离线网络模式**运行：**61 项断言通过**，JavaScript 错误 0、HTTP(S) 请求 0。结果保存在 [browser-checks.json](evidence/browser-checks.json)。实际视口为 1440×900、1024×768、768×1024、390×844。
+[可复现浏览器检查](verify-prototype.cjs) 原版原型曾在 Windows Edge Chromium 中以 **file:// + 离线网络模式**运行：**61 项断言通过**，JavaScript 错误 0、HTTP(S) 请求 0。结果保存在 [browser-checks.json](evidence/browser-checks.json)。实际视口为 1440×900、1024×768、768×1024、390×844。
 
 | 检查项 | 验证内容与结果 |
 |---|---|
 | 首页 / 导航 | 三产品切换，无侧栏首页、标准先于新建、独立设置；业务导航和返回首页通过 |
 | 资源 / 视觉 | 真实 LOGO 与源文件哈希一致，统一 SVG；桌面首页与表格、窄屏表格截图已人工查看 |
-| 标准库 | 关键词、状态、无匹配；五列、独立详情、三个指定页签及键盘切换通过；原文按钮诚实提示未附文件 |
+| 标准库 | 原始提交者测试覆盖关键词、状态、五列及旧三页签；R1 已改为编号与名称双入口、适用对象搜索、标准详情单页三分区，仍待重新运行浏览器验证 |
 | 记录 | 126 条演示记录全部可达，末条可搜索；420 条长列表可翻页；独立详情严格两个页签，禁用动作边界通过 |
 | Excel | 四区域；ECQuota 控件禁用；EquipEffi 错误阻止模拟批处理、CSV 演示下载；GHGTOOL 预览不增加记录 |
 | 参数库 | EquipEffi 无独立入口，ECQuota 禁用，GHGTOOL 搜索、空态、只读详情与免责声明通过 |
@@ -26,6 +26,10 @@ GHGTOOL 最新实现中 Excel 预览本身只读，另有显式保存项目后�
 
 截图入口：[桌面首页](evidence/home-desktop.png)、[桌面标准库](evidence/standards-1440.png)、[窄屏标准库](evidence/standards-390.png)、[GHGTOOL 长表单](evidence/ghg-long-form.png)。其余窗口截图保存在 evidence/。截图用于评审布局，业务信息均为演示。
 
+## R1 修正与验证状态
+
+R1 已修改标准编号及名称双入口、标准详情单页三分区、适用对象搜索、删除额外软件支持筛选；原“Excel导入”普通功能名改为“表格导入”；首页排序修正；检查、计算、结果精炼，普通按钮及提示中文优先。**原始 61 项通过是 R1 前测试，不能视为本次复验。** 更新后的 `verify-prototype.cjs` 已覆盖新增要求，旧版截图和 `browser-checks.json` 仍待在 Windows Edge/Playwright 重新生成。
+
 ## 复现与限制
 
 直接打开 `prototype/index.html` 即可体验，无需安装依赖。自动检查仅在维护者已安装 Node.js、Playwright 和 Edge 的环境中执行：设置 `PLAYWRIGHT_MODULE` 为已有 Playwright 模块路径，然后运行 `node docs/ui/phase2/verify-prototype.cjs`；可通过 `QZ_BROWSER_CHANNEL` 选择已安装的 Chromium 通道。测试依赖不参与离线原型运行，也不加入三个业务仓。
@@ -34,7 +38,7 @@ GHGTOOL 最新实现中 Excel 预览本身只读，另有显式保存项目后�
 
 ## 分类与待确认
 
-- **A 当前 Owner 决定**：遵循 UI 指南 A-01～A-16，包括页面/导航关系、命名、标准五列与三个页签、记录两个页签、产品能力边界及专业简洁淡蓝导航。
+- **A 当前 Owner 决定**：遵循 UI 指南 A-01～A-16，包括页面/导航关系、命名、标准五列与三个连续分区、记录两个页签、产品能力边界及专业简洁淡蓝导航。
 - **B 推荐设计**：当前颜色/字体/尺寸、分区式表单、分页、独立详情页、统一线性图标、设置承载与响应方案；可演进。
 - **C / OPEN**：首页设置弹窗、窄屏顶部水平导航、Excel 四区标题、筛选词汇、源类型切换数据保留策略、GHGTOOL 新项目核算路径映射，以及尚未开放能力。详见 [交互说明](INTERACTION_SPEC.md)。ECQuota 禁用入口不禁止未来独立开放。
 
