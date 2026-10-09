@@ -7,7 +7,8 @@ window.QZ_DEMO = {
   },
   makeStandards(product,count=36) {
     const p=this.products[product];
-    return Array.from({length:count},(_,i)=>({id:i,code:i===0?p.standard:`DEMO-${String(i).padStart(4,'0')}`,name:i===0?p.title:`演示标准 ${i} · 工业能源与设备应用示例${i%7===0?'（超长名称用于窄窗口与换行验证）':''}`,status:i%6===0?'现行':i%6===1?'即将实施':i%6===2?'已废止':'现行',date:'2026-10-01（演示）',support:i===0?'参考标准（演示）':'仅演示目录',scope:'仅用于交互结构验证；本原型不复述或解释正式标准条款。'}));
+    const object=product==='ec'?'选煤':product==='eq'?'离心泵':'炭素材料';
+    return Array.from({length:count},(_,i)=>({id:i,object:i===0?object:'通用演示对象',code:i===0?p.standard:`演示-${String(i).padStart(4,'0')}`,name:i===0?p.title:`演示标准 ${i} · 工业能源与设备应用示例${i%7===0?'（超长名称用于窄窗口与换行验证）':''}`,status:i%6===0?'现行':i%6===1?'即将实施':i%6===2?'已废止':'现行',date:'2026-10-01（演示）',support:i===0?'参考标准（演示）':'仅演示目录',scope:i===0?`适用对象：${object}（仅作交互演示，非正式标准适用范围）。`:'仅作交互演示，不构成正式标准解释。'}));
   },
   makeRecords(product,count=126) {
     const p=this.products[product];

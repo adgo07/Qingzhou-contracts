@@ -324,3 +324,11 @@ button.entry-card:disabled:hover { transform: none; border-color: var(--line); }
 .source-header h3 { margin: 0; }
 .source-card { margin-bottom: 18px; border: 1px solid var(--line); border-radius: 8px; }
 @media (max-width: 768px) { .sidebar > div:first-child { grid-column: 1 / 3; } .home-hero { grid-template-columns: 1fr; gap: 22px; padding: 10px 0 20px; } .row-link { flex-direction: column; gap: 6px; } }
+
+/* R1：标准详情连续呈现；检查、计算及结果保持紧凑。 */
+.standard-detail-stack { display:grid; gap:14px; }
+.standard-detail-section { min-width:0; }
+.standard-detail-section .card-body { padding-block:13px; }
+.is-compact { margin-bottom:10px; }
+.is-compact .card-header, .is-compact .card-body { padding-block:10px; }
+.is-compact .result-card { padding:12px; }
