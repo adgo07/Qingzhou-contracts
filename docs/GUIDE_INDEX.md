@@ -194,6 +194,8 @@ ACTIVE 指南       → 由中央仓当前合并版本决定     → 决定"怎�
 
 需要业务交付层上下文时，配合读取 `docs/governance/PRODUCT_DELIVERY_POLICY_V1.md`（同为 `ACTIVE` 指南）。
 
+Phase 2 设计评审可参考 [统一视觉与离线交互原型](ui/phase2/README.md)（ACTIVE / EVOLVING 设计提案）。它不替代以上当前指南，也不表示 OPEN 方案已批准或授权业务仓实施 Phase 3。
+
 ### 3.5 Excel / Windows 交付 / 产品交付闭环
 
 **读取：**
