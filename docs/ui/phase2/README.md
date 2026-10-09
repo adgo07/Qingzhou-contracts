@@ -63,7 +63,7 @@
 - [PySide6 实施参考](PYSIDE6_REFERENCE.md)：后续业务仓独立实施时可参考的映射，不是迁移授权。
 - [Phase 2 简短验收说明](ACCEPTANCE.md)：由主任务在完成原型实测后填写。
 
-**R1 验证说明：** `evidence/` 中现有 PNG 和 `browser-checks.json` 为 R1 之前的原始验证证据，尚未更新为 R1 当前画面。不能以旧截图或原 61 项结果宣称 R1 浏览器验收通过；请打开最新 `prototype/index.html`，在具备 Edge/Playwright 的环境重跑 `verify-prototype.cjs` 后更新材料。
+**R1 复验已闭合：** 最新原型已在 GitHub-hosted Windows Edge 离线运行，69 项交互断言全部 PASS（0 失败、0 JavaScript 错误、0 HTTP(S) 请求）。`evidence/` 中 JSON 与截图已按 R1 当前原型更新；人工检查了首页、标准库、标准详情单页三分区、宽窄表单和长排放源页面，结论 PASS（仅 Phase 2 设计原型范围）。具体证据见 [Phase 2 验收说明](ACCEPTANCE.md)。
 
 普通界面与操作按钮尽量使用中文；首页入口顺序为“标准库、新建业务、表格导入、业务记录、适用的参数库”。
 

@@ -1,6 +1,6 @@
 # Phase 2 简短验收说明
 
-状态：**ACTIVE / EVOLVING**。日期：2026-10-09。性质：提交者的原型验证记录，等待 Owner 独立验收；不是生产软件验收或标准判定认证。
+状态：**ACTIVE / EVOLVING**。日期：2026-10-09。性质：Phase 2 离线原型验证记录（含 R1 Windows Edge 自动复验和人工截图核查）；不是生产软件验收或标准判定认证。
 
 ## 基线与范围
 
@@ -10,29 +10,29 @@ GHGTOOL 最新实现中 Excel 预览本身只读，另有显式保存项目后�
 
 ## 实测结果
 
-[可复现浏览器检查](verify-prototype.cjs) 原版原型曾在 Windows Edge Chromium 中以 **file:// + 离线网络模式**运行：**61 项断言通过**，JavaScript 错误 0、HTTP(S) 请求 0。结果保存在 [browser-checks.json](evidence/browser-checks.json)。实际视口为 1440×900、1024×768、768×1024、390×844。
+[可复现浏览器检查](verify-prototype.cjs) 在 GitHub-hosted **Windows Edge Chromium** 中针对 R1 当前原型，采用 **file:// + 离线模式**重跑：**69 项断言通过 / 0 项失败，JavaScript 错误 0、HTTP(S) 请求 0**。结果为 [browser-checks.json](evidence/browser-checks.json)，覆盖 1440×900、1024×768、768×1024、390×844 四种视口。此前 61 项断言为旧版历史证据，现已被本轮结果取代。执行记录：[R1 Edge 工作流运行](https://github.com/adgo07/Qingzhou-contracts/actions/runs/37890500067)。
 
 | 检查项 | 验证内容与结果 |
 |---|---|
 | 首页 / 导航 | 三产品切换，无侧栏首页、标准先于新建、独立设置；业务导航和返回首页通过 |
 | 资源 / 视觉 | 真实 LOGO 与源文件哈希一致，统一 SVG；桌面首页与表格、窄屏表格截图已人工查看 |
-| 标准库 | 原始提交者测试覆盖关键词、状态、五列及旧三页签；R1 已改为编号与名称双入口、适用对象搜索、标准详情单页三分区，仍待重新运行浏览器验证 |
+| 标准库 | R1 新脚本已验证五列、适用对象搜索、仅标准状态筛选、编号与名称双入口、单页连续三个分区且无页签 |
 | 记录 | 126 条演示记录全部可达，末条可搜索；420 条长列表可翻页；独立详情严格两个页签，禁用动作边界通过 |
-| Excel | 四区域；ECQuota 控件禁用；EquipEffi 错误阻止模拟批处理、CSV 演示下载；GHGTOOL 预览不增加记录 |
+| 表格导入 | 四区域；ECQuota 控件禁用；EquipEffi 错误阻止模拟批处理、CSV 演示下载；GHGTOOL 预览不增加记录 |
 | 参数库 | EquipEffi 无独立入口，ECQuota 禁用，GHGTOOL 搜索、空态、只读详情与免责声明通过 |
 | 新建 | 五类分区；错误提示、固定演示结果、输入更改后旧反馈失效；EquipEffi 无额外保存通过 |
 | GHGTOOL | 排放源增删、类型切换保留演示值、独立内存工作区；18 个源的长表单通过 |
 | 窗口 / 状态 | 四尺寸页面无整体横向溢出；窄屏表格在本地容器滚动；空状态、错误、禁用入口可验证 |
 
-截图入口：[桌面首页](evidence/home-desktop.png)、[桌面标准库](evidence/standards-1440.png)、[窄屏标准库](evidence/standards-390.png)、[GHGTOOL 长表单](evidence/ghg-long-form.png)。其余窗口截图保存在 evidence/。截图用于评审布局，业务信息均为演示。
+本轮更新截图：[桌面首页](evidence/home-desktop.png)、[桌面标准库](evidence/standards-1440.png)、[标准详情桌面](evidence/standard-detail-1440.png)、[标准详情窄屏](evidence/standard-detail-390.png)、[窄屏标准列表](evidence/standards-390.png)、[1024 宽表单](evidence/form-1024.png)、[390 宽长表单](evidence/form-390.png)、[GHGTOOL 18 排放源长表单](evidence/ghg-long-form.png)。其他截图在 evidence/。截图仅用于设计评审，全部内容是演示数据。
 
 ## R1 修正与验证状态
 
-R1 已修改标准编号及名称双入口、标准详情单页三分区、适用对象搜索、删除额外软件支持筛选；原“Excel导入”普通功能名改为“表格导入”；首页排序修正；检查、计算、结果精炼，普通按钮及提示中文优先。**原始 61 项通过是 R1 前测试，不能视为本次复验。** 更新后的 `verify-prototype.cjs` 已覆盖新增要求，旧版截图和 `browser-checks.json` 仍待在 Windows Edge/Playwright 重新生成。
+R1 已修改标准编号及名称双入口、标准详情单页三分区、适用对象搜索、删除额外软件支持筛选；原“Excel导入”普通功能名改为“表格导入”；首页排序修正；检查、计算、结果精炼，普通按钮及提示中文优先。**R1 自动复验已完成：69/69 PASS。** 新版截图与 `browser-checks.json` 已由 Windows Edge 工作流重生成。
 
 ## R1 Windows Edge 浏览器与视觉复验操作
 
-**状态：OPEN，尚未执行新版 Edge/Playwright。** 执行者在本机 Windows 10/11（已安装 Edge、Node.js、Git）进行下列操作，确保工作分支为 PR #12 的 `codex/qz-ui-03-phase2`，并先核实 `git status`，避免覆盖已有未提交工作。
+**状态：PASS（本轮已在 GitHub-hosted Windows Edge 完成自动复验，以下为手动复现方法）。** 若在本地 Windows 10/11（已安装 Edge、Node.js、Git）重复执行，先核对分支与 `git status`，避免覆盖已有未提交工作。
 
 ```powershell
 git fetch origin
@@ -55,7 +55,7 @@ Playwright 仅为测试依赖，放在系统临时目录，不得提交 `node_mo
 
 **人工视觉复验不可省略。** 在 Windows Edge 中打开 `docs/ui/phase2/prototype/index.html`，对照同次生成的 `evidence/home-desktop.png`、`standards-1440.png`、`standards-390.png`、`standard-detail-1440.png`、`standard-detail-390.png`、`form-1024.png`、`form-390.png`、`ghg-long-form.png` 检查：中文按钮及提示、淡蓝导航、标准详情单页三分区、表格导入、表格溢出及横向滚动、长表单、窄屏遮挡及卡片冗余。对于桌面软件，移动端窄屏仅用于压力测试，不要求产品具备手机端功能。
 
-将新版 `evidence/browser-checks.json` 与全部更新截图提交**到原 PR #12 分支**，简短记录实测 Edge 版本、窗口尺寸、失败项修复和人工视觉结论。若视觉仍待 Owner 确认，保留 `OPEN`，不要把脚本 PASS 自动升级为全部设计批准。
+本轮已将新版 JSON 与截图提交到原 PR #12 分支。独立人工核对了首页、标准列表、标准详情两种宽度、1024 宽表单、390 宽长表单及 18 排放源页面：导航与 Logo 清晰，中文入口、单页三分区、禁用状态正确；未看到整体横向溢出、控件重叠或操作按钮遮挡。390 宽标准表格需在内部横向滚动，为设计压力测试可接受。**人工视觉复验：PASS（Phase 2 原型范围）。** 颜色、具体像素和 B 类交互仍可随业务仓实施优化，不表示正式生产 UI 或 Owner 永久定版。
 
 新版检查器已将面向维护者的断言描述改为中文，并累计普通断言的失败项目；遇到 Playwright 操作异常时仍会中断并写出 `ERROR` 报告，需修复后重跑全套测试。
 
