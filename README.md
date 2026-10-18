@@ -12,19 +12,17 @@
 
 三个业务产品继续独立开发、独立安装、独立升级、独立离线运行；未来 Suite 只负责组装公共 AppShell 与业务模块，不复制第二套算法。
 
-## 当前基线
+## 读取入口
 
-- Architecture: **V2.1 FROZEN**
-- Phase: **Contract Foundation**
-- Contracts: v1 drafts，尚未发布正式 `contracts-v1.0.0`
-- Monorepo / Suite / Mobile / Native Core: 暂不实施
+- [按任务读取导航](docs/GUIDE_INDEX.md)
+- [公共资产当前状态](PLATFORM_STATE.md)与[未决公共语义](DECISIONS_NEEDED.md)
+- [冻结架构](docs/architecture/ARCHITECTURE_V2.1_FROZEN.md)
+- [历史设计与持续有效证据](docs/history/README.md)
 
-详见：
-
-- `docs/architecture/ARCHITECTURE_V2.1_FROZEN.md`
-- `PLATFORM_STATE.md`
-- `DECISIONS_NEEDED.md`
-- `compatibility/MATRIX.md`
+具体产品能力、标准路线与当前实现状态由业务仓维护：
+[ECQuota-Insight](https://github.com/adgo07/ECQuota-Insight)、
+[EquipEffi](https://github.com/adgo07/EquipEffi)、
+[GHGTOOL](https://github.com/adgo07/GHGTOOL)。中央历史兼容快照不替代业务仓当前状态。
 
 ## 仓库结构
 
@@ -44,7 +42,7 @@ Qingzhou-contracts/
 ├─ specs/                # 稳定、平台无关业务规范
 ├─ conformance/          # 跨实现权威测试向量
 ├─ proposals/RFC/        # 公共规则变更提案
-├─ compatibility/        # 三项目兼容矩阵
+├─ compatibility/        # 带日期的兼容证据
 ├─ templates/            # 业务仓接入模板
 ├─ tools/                # 校验工具
 ├─ AGENTS.md
@@ -87,14 +85,6 @@ platform-lock.json
 普通产品 Bug、页面调整、单标准专有业务问题仍留在对应业务仓库。
 
 详见 `docs/governance/CHANGE_PROCESS.md`。
-
-## 当前代表性试点
-
-- ECQuota：GB 29446；
-- EquipEffi：代表性离心泵；
-- GHGTOOL：GB/T 32151.34。
-
-这些试点用于验证 Contract，而不是要求现在重构三个产品。
 
 ## 重要原则
 

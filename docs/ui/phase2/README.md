@@ -1,3 +1,13 @@
+# Phase 2 历史入口
+
+状态：**HISTORICAL — 固定版本历史设计快照**。原型和旧验证脚本退出当前实施与生产验收路由；以下原文中“当前”“ACTIVE”“后续参考”等描述仅指快照当时，不再作为今天的任务指令。
+
+原始 27 文件快照：[c5fc6d438c9200060649e47c016b9b48218de72c](https://github.com/adgo07/Qingzhou-contracts/tree/c5fc6d438c9200060649e47c016b9b48218de72c/docs/ui/phase2)。归档状态与恢复条件见[历史索引](../../history/README.md)。未确认持久归档位置，整包尚未迁出，其余 26 文件保持原始字节。
+
+当前规则见[产品家族规格](../UI_PRODUCT_FAMILY_SPEC_V0.1.md)、[指南 v0.2](../UI_DESIGN_GUIDELINES_V0.2.md)和[验收清单](../UI_ACCEPTANCE_CHECKLIST_V0.1.md)。旧“ECQuota 不显示报告导出”只描述当时原型，不撤销后来批准的 A-12 Word 报告；不得用 verify-prototype.cjs 的旧断言验收新产品。
+
+## 历史原文（以下内容完整保留，仅供追溯）
+
 # QZ-UI-03 Phase 2 统一 UI 视觉设计与交互原型
 
 状态：**ACTIVE / EVOLVING**

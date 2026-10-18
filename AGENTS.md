@@ -56,18 +56,13 @@
 - 禁止把 Qt/Tk 等 Presentation State 当跨平台 Workspace Contract。
 - 禁止为了未来统一而提前大规模迁移成熟 UI、Rust/C++ 重写或三仓合并。
 
-## 6. 当前阶段
+## 6. 职责与读取路由
 
-当前阶段为 Contract Foundation。
+中央维护公共规则与方法；具体产品能力、专业实现及功能开放范围由业务仓按既有批准流程维护。既有 Owner 批准决定继续有效，职责调整不授权 Agent 自行开放功能。缺少业务承接依据时保留中央决定，待明确迁移后再移除。
 
-优先事项：
+当前公共资产状态只在 [PLATFORM_STATE](PLATFORM_STATE.md) 维护；按任务读取 [GUIDE_INDEX](docs/GUIDE_INDEX.md)。历史材料按 [历史索引](docs/history/README.md) 定位，历史证据身份不等于规范失效。
 
-1. Architecture V2.1 FROZEN；
-2. Numeric Contract v1；
-3. Canonical / Package Contract v1；
-4. Module / Capability Contract v1；
-5. Workspace / Attempt / Record / Result Contract v1；
-6. 三个代表标准的 Conformance 试点。
+中央不默认新增产品型可执行原型或截图矩阵；必要公共规范示意图、Schema fixture 与校验脚本按用途判断。迁出历史资产前须有已认可的持久归档位置并完成下载恢复验证，不以临时 ZIP 或会过期的 CI artifact 代替。
 
 ## 7. 对执行 Agent 的要求
 
