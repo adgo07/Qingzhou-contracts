@@ -2,6 +2,11 @@
 
 本文件记录公共架构、Contract、Schema 与 Conformance 的发布级变化。
 
+## Unreleased — ECQuota 选煤 Word 报告范围同步（2026-10-18）
+
+- 更新 ACTIVE UI 产品规格 A-12、第 5 节、UI 指南与验收清单：Owner 当前目标为 GB 29446—2019 有效已保存等级记录支持 Word 报告；内容和术语依该标准批准映射及共享业务描述，其他标准不自动开放。
+- 功能开放取决于 ECQuota 业务仓实现和独立验收；本次中央文档同步不宣称已交付，不修改 Frozen Contract、业务规则或业务仓 `platform-lock.json`。
+
 ## Unreleased — QZ-UI-03 Phase 2 视觉与交互提案
 
 - R1：标准编号与名称均可进入单页三分区详情；搜索支持适用对象，移除软件支持下拉框；首页排序调整，普通入口统一改为“表格导入”。
