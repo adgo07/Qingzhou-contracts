@@ -4,7 +4,7 @@
 
 ## 1. 立即可用入口
 
-先读本仓 [AGENTS](../AGENTS.md)，按需确认 [PLATFORM_STATE](../PLATFORM_STATE.md) 与 [DECISIONS_NEEDED](../DECISIONS_NEEDED.md)。当前公共资产状态只在 PLATFORM_STATE 维护，变更历史见 [CHANGELOG](../CHANGELOG.md)。
+先读本仓 [AGENTS](../AGENTS.md)，按需确认 [PLATFORM_STATE](../PLATFORM_STATE.md) 与 [DECISIONS_NEEDED](../DECISIONS_NEEDED.md)。中央架构、Contract、Schema 与 Conformance 的当前发布状态以 PLATFORM_STATE 为准；UI 指南和历史证据的适用身份按本导航、对应文件及历史索引确定；变更历史见 [CHANGELOG](../CHANGELOG.md)。
 
 ## 2. 状态与版本
 
@@ -75,4 +75,4 @@ UI 规格 A 类为 Owner 当前决定，B 类推荐，C 类未确认；不冻结
 
 ## 5. 维护
 
-新增、移动或改变文件状态时同步导航，明确读取方式；允许纯历史证据，不机械归入 Frozen / ACTIVE。历史证据可用完整 commit + 路径定位。状态以 PLATFORM_STATE 为准，规则以对应权威正文为准。本导航不复制禁止条款、产品完成度或长期任务清单。
+新增、移动或改变文件状态时同步导航，明确读取方式；允许纯历史证据，不机械归入 Frozen / ACTIVE。历史证据可用完整 commit + 路径定位。中央架构与 Contract、Schema、Conformance 的发布状态以 PLATFORM_STATE 为准；其他文件的适用状态以本导航及相应正文为准，规则以对应权威正文为准。本导航不复制禁止条款、产品完成度或长期任务清单。

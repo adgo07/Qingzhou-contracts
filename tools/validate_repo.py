@@ -74,7 +74,14 @@ def check_links() -> list[str]:
         source = ROOT / name
         if not source.is_file():
             continue  # check_required reports this
-        for href in re.findall(r"!?\[[^\]\n]*\]\(([^)\s]+)\)", prose(source)):
+        # Also accept optional quoted/parenthesized Markdown link titles.
+        # Keep parsing deliberately scoped; no external Markdown dependency.
+        links = re.finditer(
+            r"""!?\[[^\]\n]*\]\(\s*(<[^>\n]+>|[^\s)]+)(?:\s+(?:"[^"\n]*"|'[^'\n]*'|\([^()\n]*\)))?\s*\)""",
+            prose(source),
+        )
+        for match in links:
+            href = match.group(1)
             ref = urlsplit(href.strip("<>"))
             if ref.scheme or ref.netloc:
                 continue
