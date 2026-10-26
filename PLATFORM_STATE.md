@@ -29,6 +29,8 @@ Gate 5 的执行起点：
 
 该 SHA 是 QZC-N01-D / PR #4 的 merge commit，确认 Gate 4 已合并后才进入 Gate 5。
 
+历史过程与持续有效的冻结 / 采用证据按[历史索引](docs/history/README.md)定位；下列证据链仍支撑当前冻结结论，不是新任务指令。业务仓当前功能范围由业务仓维护。
+
 ## QZC-N01 evidence chain
 
 | Gate | Scope | Result |
