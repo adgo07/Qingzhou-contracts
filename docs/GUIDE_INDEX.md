@@ -36,7 +36,7 @@ locked SHA 下 [Numeric Contract](../contracts/numeric/NUMERIC_CONTRACT_V1_FROZE
 
 ### 3.4 桌面 UI / UI 评审
 
-当前 [产品家族规格](ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md)（A 决定唯一正文、待迁移约束与 OPEN）、[指南 v0.2](ui/UI_DESIGN_GUIDELINES_V0.2.md)（实现方法）、[验收清单](ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md)（按任务选动作），以及业务仓批准能力范围
+当前 [产品家族规格](ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md)（A 决定唯一正文、待迁移约束与 OPEN）、[指南 v0.2](ui/UI_DESIGN_GUIDELINES_V0.2.md)（家族数值与实现方法）、[验收清单](ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md)（按任务选动作），以及业务仓批准能力范围
 
 ### 3.5 Excel / Windows 交付 / 产品交付闭环
 
@@ -71,7 +71,7 @@ UI 规格 A 类为 Owner 当前决定，B 类推荐，C 类未确认；不冻结
 3. 读业务仓问题台账、批准 Mapping、Canonical / Rule / Calculator 与任务相关证据。
 4. 涉及公共语义不足时按变更流程提出 RFC / ADR，业务实现限于明确可逆范围。
 
-不因读取 ACTIVE 指南修改 lock 或声称 Frozen adoption；也不因 lock 固定而拒读当前 ACTIVE 方法。未合并分支只供评审，不提前成为业务任务依据。
+不因读取 ACTIVE 指南修改 lock 或声称 Frozen adoption；也不因 lock 固定而拒读当前 ACTIVE 方法。未合并分支只供评审，不提前作为已发布依据；本次 UI 任务的具体授权记录见[规格 §1](ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md#1-适用与分类)，通用变更流程见[CHANGE_PROCESS](governance/CHANGE_PROCESS.md)。
 
 ## 5. 维护
 
