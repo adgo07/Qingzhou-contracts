@@ -71,7 +71,7 @@ UI 规格 A 类为 Owner 当前决定，B 类推荐，C 类未确认；不冻结
 3. 读业务仓问题台账、批准 Mapping、Canonical / Rule / Calculator 与任务相关证据。
 4. 涉及公共语义不足时按变更流程提出 RFC / ADR，业务实现限于明确可逆范围。
 
-不因读取 ACTIVE 指南修改 lock 或声称 Frozen adoption；也不因 lock 固定而拒读当前 ACTIVE 方法。未合并分支不称已发布；普通任务只供评审。Owner 在具体任务中明确授权使用候选设计时，以该任务授权为本轮实施依据，候选身份保留，不能据此改变 Frozen / Contract lock。
+不因读取 ACTIVE 指南修改 lock 或声称 Frozen adoption；也不因 lock 固定而拒读当前 ACTIVE 方法。未合并分支只供评审，不提前作为已发布依据；本次 UI 任务的具体授权记录见[规格 §1](ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md#1-适用与分类)，通用变更流程见[CHANGE_PROCESS](governance/CHANGE_PROCESS.md)。
 
 ## 5. 维护
 
