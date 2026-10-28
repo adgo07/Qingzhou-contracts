@@ -13,7 +13,9 @@
 
 `icons.svg` 原样复制自中央 `origin/main@a389ac1de63c4f331f3b04e5e7b7a17ef02ed111:docs/ui/phase2/prototype/assets/icons.svg`，该文件最后变更提交为 `854b544563260f9e79c73e714c85f6589e0f19b3`。
 
-SHA256：`ae20eb19ff20f2a41c53ac840f89426afc13fa19f1a3fd81d978b300989d897c`。15 个 symbol 均为 24×24 viewBox、1.7 stroke 的线性图形。本轮使用正式副本，不依赖历史原型运行，历史文件不变。
+仓库发布字节 SHA256：`f78b7a6249ffe88eedcdf52c71c24299e306e73b067c191b5fb02ea901764712`。15 个 symbol 均为 24×24 viewBox、1.7 stroke 的线性图形。本轮使用正式副本，不依赖历史原型运行，历史文件不变。
+
+校验以 `git show <commit>:docs/ui/assets/icons.svg` 的原始 bytes 为准（例如 Python `subprocess.check_output`，不经过文本解码或 PowerShell 文本管道）。Git blob 与上述历史源 blob 逐字节一致，使用 LF 换行；本目录 `.gitattributes` 仅对正式 `icons.svg` 设置 `text eol=lf`，保证后续检出字节一致。旧 Windows 工作区的 CRLF 副本会得到不同 hash，不作为发布字节校验依据。PNG 同样按 Git blob 原始 bytes 校验，未做文本换行归一。历史资产及其属性不变。
 
 | 语义 | symbol |
 |---|---|
