@@ -5,7 +5,7 @@
 - 来源：Owner 提供的品牌原图（内部归档）；按下列 SHA256 识别，不依赖本机目录。
 - 图像：3060 × 759，RGBA，PNG，保留透明。
 - SHA256：`db557a6374a928b46bd3ab499c0a295ef147e87d79a273d1fde1f2d61f8bc24d`
-- 授权依据：2026-10-28 本轮 Owner 家族实施任务；未重绘、改色、拉伸或 AI 超分。执行者已在该任务中对内部原图计算 SHA256 并逐字节核对；仓内发布文件可独立复核，内部原件由 Owner 保管确认。
+- 授权依据：2026-10-28 Owner 家族实施任务，见 [PR16](https://github.com/adgo07/Qingzhou-contracts/pull/16)；原件由 Owner 内部归档，仓内副本按上述摘要复核。
 
 等比目标宽度、容器与 DPR 方法见[指南 §4](../UI_DESIGN_GUIDELINES_V0.2.md#4-家族实施数值与方法)。从本原图重采样，不反复放大缩略图；无需 CDR 转 SVG。品牌授权不扩展为第三方商标授权。历史 `phase2/prototype/assets` 保留不变，不作为当前资源维护位置。
 
@@ -13,9 +13,9 @@
 
 `icons.svg` 原样复制自中央 `origin/main@a389ac1de63c4f331f3b04e5e7b7a17ef02ed111:docs/ui/phase2/prototype/assets/icons.svg`，该文件最后变更提交为 `854b544563260f9e79c73e714c85f6589e0f19b3`。
 
-仓库发布字节 SHA256：`f78b7a6249ffe88eedcdf52c71c24299e306e73b067c191b5fb02ea901764712`。15 个 symbol 均为 24×24 viewBox、1.7 stroke 的线性图形。本轮使用正式副本，不依赖历史原型运行，历史文件不变。
+仓库发布字节 SHA256：`f78b7a6249ffe88eedcdf52c71c24299e306e73b067c191b5fb02ea901764712`。15 个 symbol 均为 24×24 viewBox、1.7 stroke 的线性图形。使用正式副本，不依赖历史原型运行，历史文件不变。
 
-校验以 `git show <commit>:docs/ui/assets/icons.svg` 的原始 bytes 为准（例如 Python `subprocess.check_output`，不经过文本解码或 PowerShell 文本管道）。Git blob 与上述历史源 blob 逐字节一致，使用 LF 换行；本目录 `.gitattributes` 仅对正式 `icons.svg` 设置 `text eol=lf`，保证后续检出字节一致。旧 Windows 工作区的 CRLF 副本会得到不同 hash，不作为发布字节校验依据。PNG 同样按 Git blob 原始 bytes 校验，未做文本换行归一。历史资产及其属性不变。
+校验以 Git blob 原始字节为准。SVG 与历史源逐字节一致，使用 LF；`.gitattributes` 固定其换行，避免 Windows CRLF 改变摘要。PNG 不做文本归一；历史资产及属性不变。
 
 | 语义 | symbol |
 |---|---|
