@@ -38,6 +38,8 @@ locked SHA 下 [Numeric Contract](../contracts/numeric/NUMERIC_CONTRACT_V1_FROZE
 
 当前 [产品家族规格](ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md)（A 决定唯一正文、待迁移约束与 OPEN）、[指南 v0.2](ui/UI_DESIGN_GUIDELINES_V0.2.md)（实现方法）、[验收清单](ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md)（按任务选动作），以及业务仓批准能力范围
 
+涉及文案精简时，读取指南的[界面文案与信息密度](ui/UI_DESIGN_GUIDELINES_V0.2.md#界面文案与信息密度)及验收清单的[对应检查](ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md#5-界面文案与信息密度检查)；六条规则与必要例外只在指南维护。
+
 ### 3.5 Excel / Windows 交付 / 产品交付闭环
 
 [产品交付规则](governance/PRODUCT_DELIVERY_POLICY_V1.md)、业务仓 Reference Standard Roadmap；Excel 是 Adapter，GUI / Excel 进入同一 Application / Domain，不建立第二套算法
