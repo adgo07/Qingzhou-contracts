@@ -38,6 +38,7 @@ CURRENT_MARKDOWN = [
     "docs/ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md",
     "docs/ui/UI_DESIGN_GUIDELINES_V0.2.md",
     "docs/ui/UI_ACCEPTANCE_CHECKLIST_V0.1.md",
+    "docs/ui/assets/README.md",
 ]
 SPEC = "docs/ui/UI_PRODUCT_FAMILY_SPEC_V0.1.md"
 REQUIRED += CURRENT_MARKDOWN + [
